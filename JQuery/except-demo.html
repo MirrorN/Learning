@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>except element demo</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        .goods-show{
+            margin: 100px auto;
+            width: 500px;
+            height: 400px;
+            background-color: #ccc;
+        }
+        
+        .goods-show ul{
+            float: left;
+        }
+
+        .goods-show li{
+            height: 80px;
+            width: 100px;
+        }
+
+        .goods-show li:hover{
+            background-color: rgb(236, 231, 231);
+        }
+
+        .goods-show li a{
+            display: block;
+            line-height: 80px;
+            text-align: center;
+            color: #000;
+        }
+
+        .content div{
+            display: none;
+            float: left;
+            height: 400px;
+            width: 400px;
+        }
+
+        .content img{
+            height: 100%;
+            width: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <script>
+        $(function(){
+            $('.left li').click(function(){
+                console.log($('.left a'));
+                var index = $(this).index();
+                console.log($(this));
+                console.log(index);
+                $('.content div').eq(index).show().siblings().hide();
+            })
+        });
+    </script>
+    <div class="goods-show">
+        <ul class="left">
+            <li><a href="#">good 1</a></li>
+            <li><a href="#">good 2</a></li>
+            <li><a href="#">good 3</a></li>
+            <li><a href="#">good 4</a></li>
+            <li><a href="#">good 5</a></li>
+        </ul>
+        <div class="content">
+            <div>
+                <a href="#"><img src="images/呢大衣.jpg" alt="good 1"></a>
+            </div>
+            <div>
+                <a href="#"><img src="images/女包.jpg" alt="good 2"></a>
+            </div>
+            <div>
+                <a href="#"><img src="images/围巾.jpg" alt="good 3"></a>
+            </div>
+            <div>
+                <a href="#"><img src="images/男棉服.jpg" alt="good 4"></a>
+            </div>
+            <div>
+                <a href="#"><img src="images/登山鞋.jpg" alt="good 5"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

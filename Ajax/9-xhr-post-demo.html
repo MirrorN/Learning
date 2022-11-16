@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xhr post test</title>
+    <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://www.liulongbin.top:3006/api/addbook');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('bookname=测试书&author=测试作者&publisher=测试出版');
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 0){
+                console.log('Created done');
+            }else if(xhr.readyState === 1){
+                console.log('Opend done');
+            }else if(xhr.readyState === 2){
+                console.log('Start transmission');
+            }else if(xhr.readyState === 4 && xhr.status === 200){
+                console.log(xhr.responseText);
+            }
+        }
+    </script>
+</body>
+</html>

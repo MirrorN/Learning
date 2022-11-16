@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test for inner object</title>
+    <script>
+        // Math对象使用
+        function func1() {
+            console.log(Math.PI);
+            var arr = [1, 2, 3, 4];
+            //从数组中取得最大值
+            console.log(Math.max(...arr));
+        }
+
+        //包装定制的数学对象
+        function func2() {
+            var myMath = {
+                PI: Math.PI,
+                max: function () {
+                    max = arguments[0];
+                    for (var i = 1; i < arguments.length; i++) {
+                        if (max < arguments[i]) {
+                            max = arguments[i];
+                        }
+                    }
+                    return max;
+                },
+                min: function () {
+                    min = arguments[0];
+                    for (var i = 1; i < arguments.length; i++) {
+                        if (min > arguments[i]) {
+                            min = arguments[i];
+                        }
+                    }
+                    return min;
+                }
+            }
+
+            console.log(myMath.PI);
+            console.log(myMath.max(1, 2, 3, 4));
+            console.log(myMath.min(2, 3, 4, 5));
+        }
+        // func2();
+        function func3() {
+            console.log(Math.PI);
+            console.log(Math.floor(Math.PI));
+            console.log(Math.ceil(Math.PI));
+            console.log(Math.round(Math.PI));
+            console.log(Math.abs(-3.4));
+        }
+        // func3();
+        // Math.random() 返回[0, 1)之间的随机小数 如果想使用取得随机整数等方法，MDN文档中提供了相关方法
+        function func4() {
+            console.log(Math.random());
+            console.log(Math.random());
+        }
+        // func4();
+
+        function func5() {
+            var val1 = 5;
+            console.log(Math.floor(val1));
+            console.log(Math.ceil(val1));
+        }
+        function getRandomInt(min, max) {
+            //为保证数值是在两数之间 必须对min上取整 对max下取整
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+        function getRandomIntInclusive() {
+            // 如果要包含右区间 则可以设置 max-min+1 这样乘法之后的结果最大是 max.xxx
+            // 然后向下取整即可
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        // func5();
+
+        function getRanddomVar(arr){
+            var randIndex = Math.floor(Math.random() * (arr.length - 0) + 0);
+            return arr[randIndex];
+        }
+        var arr = ['zhangsan', 'lisi', 'wangwu', 'zhaoliu'];
+        for(var i=0; i<5; i++){
+            console.log(getRanddomVar(arr));
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

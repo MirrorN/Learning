@@ -1,0 +1,94 @@
+<!-- three.js 球体运动测试 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Test</title>
+    <script src="./lib/three.min.js"></script>
+    <script src="./lib/OrbitControls.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var scene = new THREE.Scene();
+        var texLoader = new THREE.TextureLoader();
+
+        // 坐标轴
+        var axesHelper = new THREE.AxesHelper(450);
+        scene.add(axesHelper);
+
+
+        // 第一个物体
+        var geometry1 = new THREE.SphereGeometry(40, 100, 200);
+        var material1 = new THREE.MeshBasicMaterial({
+            map: texLoader.load('./images/earth.jpg'),
+        });
+        var mesh1 = new THREE.Mesh(geometry1, material1);
+        mesh1.position.set(30, 30, 0);
+        scene.add(mesh1);
+
+        var geometry2 = new THREE.SphereGeometry(40, 100, 200);
+        var material2 = new THREE.MeshBasicMaterial({
+            map: texLoader.load('./images/mars.jpg'),
+        });
+        var mesh2 = new THREE.Mesh(geometry2, material2);
+        mesh2.position.set(150, 30, 0);
+        scene.add(mesh2);
+
+        // 第二个几何体
+        var geometry3 = new THREE.SphereGeometry(50, 100, 200);
+        var material3 = new THREE.MeshBasicMaterial({
+            map: texLoader.load('./images/jupiter.jpg'),
+        });
+        var mesh3 = new THREE.Mesh(geometry3, material3);
+        mesh3.position.set(0, 0, 150);
+        scene.add(mesh3);
+
+        // 光源
+        var point = new THREE.PointLight(0xffffff);
+        point.position.set(400, 200, 300);
+        scene.add(point);
+        var ambient = new THREE.AmbientLight(0x444444);
+        scene.add(ambient);
+
+        // 相机设置
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var k = width / height;
+        var s = 200;
+        var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+        camera.position.set(600, 600, 200);
+        camera.lookAt(scene.position);
+
+        // 渲染器设置
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(width, height);
+        renderer.setClearColor(0xcccccc);
+        document.body.appendChild(renderer.domElement);
+        // renderer.render(scene, camera);
+
+        function render() {
+            renderer.render(scene, camera);//执行渲染操作
+            mesh1.rotateY(0.005);//每次绕y轴旋转0.01弧度
+            mesh3.rotateY(0.01);//每次绕y轴旋转0.01弧度
+            scene.rotateY(0.003);
+            requestAnimationFrame(render);//请求再次执行渲染函数render
+        }
+        render();
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    </script>
+</body>
+
+</html>

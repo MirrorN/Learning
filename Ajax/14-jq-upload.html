@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jq upload</title>
+    <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+    <input type="file" id="fileSelector">
+    <button id="btnUpload">upload</button>
+    <br>
+    <img src="./images/loading.gif" style="display: none;" alt="" id="load">
+    <img src="" alt="" id="img">
+
+
+    <script>
+        $('#btnUpload').on('click', function(){
+            var files = $('#fileSelector')[0].files;
+            if(files.length <= 0){
+                return alert('choose one file');
+            }
+            var fd = new FormData();
+            fd.append('avatar', files[0]);
+            console.log('ajax');
+            $.ajax({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/upload/avatar',
+                data: fd,
+                // 使用 FormData 默认的 content-type值
+                contentType: false,
+                // 不对 FormData 中的数据进行 url 编码 而是将 formData 数据原样发送到服务器
+                processData: false,
+                success: function(res){
+                    console.log(res);
+                }
+            });
+        });
+
+        $('document').ajaxStart(function(){
+            console.log('ajax start');
+            $('#load').show();
+        });
+        $('document').ajaxStop(function(){
+            console.log('ajax end');
+            $('#load').hide();
+        });
+    </script>
+</body>
+</html>

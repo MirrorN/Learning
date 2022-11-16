@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>except</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                // 隐式迭代 为每个button添加点击事件
+                $(this).css('background', '#ccc');
+
+                $(this).siblings('button').css('background', '');
+            });
+        });
+    </script>
+    <button>click</button>
+    <button>click</button>
+    <button>click</button>
+    <button>click</button>
+</body>
+</html>

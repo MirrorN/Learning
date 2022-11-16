@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>file upload progress</title>
+    <script src="./lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content {
+            margin: 20px;
+            padding: 5px;
+            width: 600px;
+            height: 500px;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <input type="file" id="uploadSelector">
+        <button id="btnUpload">upload</button>
+        <br>
+
+        <div class="progress" id="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin=""
+                aria-valuemax="" id="percent" style="width: 0%;">
+            </div>
+        </div>
+
+        <img src="" alt="" id="img" width="300">
+    </div>
+
+    <script>
+        $('#progress').hide();
+        $('#btnUpload').on('click', function () {
+            $('#progress').hide();
+            var selectedFiles = $('#uploadSelector')[0].files;
+            // 1.判断选择文件
+            console.log(selectedFiles.length);
+            if (selectedFiles.length <= 0) {
+                return alert('Choose one file');
+            }
+            // 2.模拟FormData提交
+            var fd = new FormData();
+            fd.append('avatar', selectedFiles[0]);
+            // 3.创建 xhr 对象
+            var xhr = new XMLHttpRequest();
+            // xhr.onprogress 用来监听上传进度
+            xhr.upload.onprogress = function (e) {
+                // e.lengthComputable表示当前上传的资源是否可计算
+                if (e.lengthComputable) {
+                    // e.loaded: 已传输的字节
+                    // e.total: 需传输的字节
+                    var persentComp = Math.ceil((e.loaded / e.total) * 100);
+                    console.log(persentComp);
+                    $('#progress').show();
+                    $('#percent').attr('style', 'width:' + persentComp + '%').html(persentComp + '% complete');
+                }
+            }
+            // xhr.upload.onload 用于监听上传完成事件
+            xhr.upload.onload = function(){
+                // 上传完成后改变进度条样式
+                $('#percent').removeClass().addClass('progress-bar progrss-bar-success');
+            }
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/upload/avatar');
+            xhr.send(fd);
+            // 4.监听结果
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var resData = JSON.parse(xhr.responseText);
+                    if (resData.status === 200) {
+                        $('#img')[0].src = 'http://www.liulongbin.top:3006' + resData.url;
+                    } else {
+                        console.log(resData.message);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

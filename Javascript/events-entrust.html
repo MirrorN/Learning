@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrust</title>
+    <style>
+        .red{
+            background-color: rgb(249, 169, 169);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>li 11111111</li>
+        <li>li 22222222</li>
+        <li>li 33333333</li>
+        <li>li 44444444</li>
+    </ul>
+
+    <script>
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function(e){
+            e.target.className = 'red';
+        });
+
+        // document.addEventListener('contextmenu', function(e){
+        //     e.preventDefault();
+        // })
+
+        // document.addEventListener('selectstart', function(e){
+        //     e.preventDefault();
+        // })
+
+        document.addEventListener('click', function(e){
+            console.log('('+e.clientX+','+e.clientY+')');
+            console.log();
+            console.log('('+e.pageX+','+e.pageY+')');
+            console.log();
+            console.log('('+e.screenX+','+e.screenY+')');
+        })
+    </script>
+</body>
+</html>

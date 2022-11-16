@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operate Element by JS</title>
+    <style>
+        img{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnImg1">pic1</button>
+    <button id="btnImg2">pic2</button><br >
+    <img src="images/img1.png" alt="test img">
+
+    <script>
+        var btnImg1 = document.querySelector('#btnImg1');
+        var btnImg2 = document.querySelector('#btnImg2');
+        console.log(btnImg1);
+        console.log(btnImg2);
+        var showImg = document.querySelector('img');
+        btnImg1.onclick = function(){
+            showImg.src = 'images/img1.png';
+            showImg.title = 'pic1';
+        }
+        btnImg2.onclick = function(){
+            showImg.src = 'images/img2.png';
+            showImg.title = 'pic2';
+        }
+    </script>
+</body>
+</html>

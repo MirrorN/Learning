@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location</title>
+</head>
+<body>
+    <button>click</button>
+    <span></span>
+    <script>
+        var btn = document.querySelector('button');
+        var span = document.querySelector('span');
+        console.log(location.href);
+        console.log(location.search);
+        console.log(location.host);
+        console.log(location.port);
+        btn.addEventListener('click', function(){
+            var restTime = 5;
+            var timer = setInterval(() => {
+                if(restTime <= 0){
+                    location.href='https://baidu.com';
+                }else{
+                    span.innerHTML = restTime + '秒后跳转';
+                    restTime--;
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

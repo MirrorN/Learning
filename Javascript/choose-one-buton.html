@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button>btn1</button>
+        <button>btn2</button>
+        <button>btn3</button>
+        <button>btn4</button>
+    </div>
+    <script>
+        var btns = document.getElementsByTagName('button');
+        for(var i=0; i<btns.length; i++){
+            btns[i].onclick = function(){
+                for(var j=0; j<btns.length; j++){
+                    btns[j].style.backgroundColor = '';
+                }
+                this.style.backgroundColor = 'lightgreen';
+            }
+        }
+    </script>
+</body>
+</html>

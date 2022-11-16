@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prop</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <a href="http://baidu.com" title="baidu">link start</a>
+    <input type="checkbox">
+    <div>
+        <span>this is a sentence.</span>
+    </div>
+
+    <input type="text" value="ssafds">
+
+    <ul>
+        <li>li 1</li>
+        <li>li 2</li>
+        <li>li 3</li>
+        <li>li 4</li>
+    </ul>
+
+    <script>
+        $(function(){
+            // 修改元素内容文本
+            console.log($('a').prop('href'));
+            $('a').prop('title', 'new link');
+            console.log($('a').prop('title'));
+
+            // 修改文本内容
+            console.log($('div').html());
+            // $('div').html('sentence.');
+            console.log($('div').text());
+
+            $('input').val('1234');
+
+            // 遍历元素
+            var colorArr = ['lightgreen', 'lightblue', 'lightgrey', 'skyblue'];
+            $('li').each(function(index, domEle){
+                $(domEle).css('backgroundColor', colorArr[index]);
+            });
+
+            // $.each() 方法
+            $.each(colorArr, function(i, ele){
+                console.log(i+' -- '+ele); 
+            })
+            
+            $.each({name: 'zs', age: 12, gender:'man'}, function(i, ele){
+                console.log(i + ' -- ' + ele);
+            })
+        })
+    </script>
+</body>
+</html>

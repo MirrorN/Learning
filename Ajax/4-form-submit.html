@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form sbumit</title>
+    <script src="./lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .con{
+            margin: 40px auto;
+            padding: 5px;
+            height: 350px;
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="con">
+        <form action="" method="POST" role="form" id="form1">
+            <legend>Test Form</legend>
+
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" id="" name="uname" placeholder="Input field">
+            </div>
+
+            <div class="form-group">
+                <label for="">Date</label>
+                <input type="date" name="time">
+            </div>
+
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="text" class="form-control" id="" name="upwd" placeholder="Input field">
+            </div>
+
+            <div class="form-group">
+                <label for="">gender</label>
+                <input type="text" class="form-control" id="" name="gender" placeholder="Input field">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="display: block; margin: 5px auto">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        $(function(){
+            $('#form1').on('submit', function(event){
+                console.log($('#form1').serialize());
+                event.preventDefault();
+            });
+        })
+    </script>
+
+</body>
+
+</html>

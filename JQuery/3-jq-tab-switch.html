@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab switch</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .content {
+            margin: 20px auto;
+            width: 300px;
+        }
+
+        .tab>li {
+            float: left;
+        }
+
+        .tab a {
+            display: inline-block;
+            height: 30px;
+            width: 80px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #ccc;
+        }
+
+        .tab a:hover {
+            background-color: rgb(150, 149, 149);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content li {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .tab-content li:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <ul class="tab">
+            <li>
+                <a href="#">tab 1</a>
+                <ul class="tab-content">
+                    <li>aaaa</li>
+                    <li>bbbb</li>
+                    <li>cccc</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">tab 2</a>
+                <ul class="tab-content">
+                    <li>aaaa</li>
+                    <li>bbbb</li>
+                    <li>cccc</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">tab 3</a>
+                <ul class="tab-content">
+                    <li>aaaa</li>
+                    <li>bbbb</li>
+                    <li>cccc</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        $(function () {
+            // tab 切换： 直接显示隐藏
+            // $('.tab>li').on('mouseover', function(){
+            //     $(this).children('ul').show();
+            // })
+
+            // $('.tab>li').on('mouseout', function(){
+            //     $(this).children('ul').hide();
+            // })
+
+
+            // 滑动效果
+            // $('.tab>li').on('mouseover', function () {
+            //     // 注意使用 stop() 将尚未执行完的动画效果停止
+            //     $(this).children('ul').stop().slideDown();
+            // })
+
+            // $('.tab>li').on('mouseout', function () {
+            //     $(this).children('ul').stop().slideUp();
+            // })
+
+
+            // 事件切换
+            // hover(function1, function2) func1表示鼠标经过 func2鼠标离开
+            // $('.tab>li').hover(function(){
+            //     $(this).children('ul').stop().slideDown();
+            // }, function(){
+            //     $(this).children('ul').stop().slideUp();
+            // })
+
+            // 事件切换 -- 如果 hover(func1) 只写一个函数 则鼠标经过、离开都会触发
+            $('.tab>li').hover(function(){
+                $(this).children('ul').stop().slideToggle();
+            })
+        })
+    </script>
+</body>
+
+</html>

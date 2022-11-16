@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test for DOM</title>
+</head>
+
+<body>
+    <div id="time">
+        2022-7-19
+    </div>
+    <script>
+        function func1() {
+            var time = document.getElementById('time');
+            // 返回的结果为 object
+            console.log(typeof time);
+            console.log(time);
+            // 打印对象详细内容
+            console.dir(time);
+        }
+    </script>
+    <div>
+        <ul id="ul">
+            <li>test 1</li>
+            <li>test 2</li>
+            <li class="li1">test 3</li>
+            <li class="li2">test 4</li>
+        </ul>
+    </div>
+    <script>
+        function func2() {
+            // 返回的结果是伪数组
+            var lis = document.getElementsByTagName('li');
+            console.log(lis);
+            console.dir(lis);
+            // 可以通过遍历数组的形式访问每个对象
+            for (var i = 0; i < lis.length; i++) {
+                console.log(lis[i]);
+            }
+
+            // 可以通过父元素进行访问 注意父元素必须是单个元素
+            var ul = document.getElementById('ul');
+            var lis1 = ul.getElementsByTagName('li');
+            console.log(lis1);
+        }
+        // func2();
+    </script>
+    <script>
+        function func3() {
+            // 返回页面的第一个div元素
+            var firstDiv = document.querySelector('div');
+            console.log(firstDiv);
+
+            var firstLi1 = document.querySelector('.li1');
+            console.log(firstLi1);
+
+            var ul = document.querySelector('#ul');
+            console.log(ul);
+        }
+        
+        function func4(){
+            var bodyEle = document.body;
+            var htmlEle = document.documentElement;
+            console.log(bodyEle)
+            console.log(typeof bodyEle);
+            console.log(htmlEle);
+            console.log(typeof htmlEle);
+        }
+        // func4();
+    </script>
+
+    <div>
+        <button id="btn">Click and alert</button>
+        <div id="showTime">2019-10-2</div>
+    </div>
+    <script>
+        // 获取事件源
+        var btn = document.getElementById('btn');
+        var divShow = document.getElementById('showTime');
+        // 事件类型
+        // 事件触发程序
+        btn.onclick = function(){
+            divShow.innerText = new Date();
+        }
+    </script>
+</body>
+
+</html>

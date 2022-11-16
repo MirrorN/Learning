@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list menu</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav{
+            width: 600px;
+            overflow: hidden;
+            margin: 50px auto;
+        }
+        
+        li{
+            list-style-type: none;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav>ul>li {
+            position: relative;
+            float: left;
+            height: 40px;
+            width: 150px;
+            text-align: center;
+            background-color: #ccc;
+        }
+
+        .nav a{
+            display: block;
+            line-height: 40px;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .nav a:hover{
+            background-color: rgb(116, 115, 115);
+        }
+
+        li>ul{
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 150px;
+            background-color: rgb(238, 222, 222);
+        }
+        
+        li>ul>li:hover{
+            background-color: #ccc;
+        }
+        .test{
+            height: 200px;
+            width: 600px;
+            margin-top: 40px;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="#">weibo</a>
+                <ul>
+                    <li>评论</li>
+                    <li>私信</li>
+                    <li>转发</li>
+                    <li>@我</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">weibo</a>
+                <ul>
+                    <li>评论</li>
+                    <li>私信</li>
+                    <li>转发</li>
+                    <li>@我</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">weibo</a>
+                <ul>
+                    <li>评论</li>
+                    <li>私信</li>
+                    <li>转发</li>
+                    <li>@我</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">weibo</a>
+                <ul>
+                    <li>评论</li>
+                    <li>私信</li>
+                    <li>转发</li>
+                    <li>@我</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="test"></div>
+    </div>
+
+    <script>
+        var ul = document.querySelector('.nav').children;
+        console.log(ul);
+        // 注意 .children 返回的结果是一个伪数组 所以继续取对象的时候需要加索引号
+        var lis = ul[0].children;
+        console.log(lis);
+
+        for(var i=0; i<lis.length; i++){
+            lis[i].onmouseover = function(){
+                this.children[1].style.display = 'block';
+            }
+
+            lis[i].onmouseout = function(){
+                this.children[1].style.display = 'none';
+            }
+        }
+
+    </script>
+</body>
+</html>

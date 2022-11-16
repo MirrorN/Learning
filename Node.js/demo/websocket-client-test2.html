@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Websocket Client 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            height: 300px;
+            width: 200px;
+            margin: 10px auto;
+            border: 1px solid black;
+        }
+
+        .chatroom {
+            width: 200px;
+            height: 250px;
+            border-bottom: 1px solid black;
+            margin-bottom: 10px;
+            padding-left: 5px;
+            /* background-color: #ccc; */
+        }
+
+        input {
+            display: inline-block;
+            width: 150px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="chatroom"></div>
+        <input type="text">
+        <button>Send</button>
+    </div>
+
+    <script src="websocket-test-client.js"></script>
+
+    <script type="text/javascript">
+        var sendBtn = document.querySelector('button');
+        sendBtn.addEventListener('click', function () {
+            send();
+        })
+
+        function send() {
+            var chartRoom = document.querySelector('input');
+            ws.send(chartRoom.value);
+            chartRoom.value = '';
+        }
+    </script>
+</body>
+
+</html>

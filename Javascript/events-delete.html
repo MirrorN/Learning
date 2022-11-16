@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Event</title>
+    <style>
+        div{
+            height:100px;
+            width: 100px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        // 使用额外定义的function
+        div.addEventListener('click', func);
+        function func(){
+            console.log('hello.');
+            // 删除监听函数
+            div.removeEventListener('click', func, );
+        }
+    </script>
+</body>
+</html>

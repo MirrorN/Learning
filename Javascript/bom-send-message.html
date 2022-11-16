@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message</title>
+</head>
+<body>
+    <input type="text">
+    <button>发送</button>
+    <script>
+        /*
+        计时改变按钮状态 
+        1. 剩余时间变量
+        2. 改变button状态为不可变
+        3. 在click事件中定义计时器 间隔时间内改变数值 并判断倒计时为0的时候恢复按钮原始状态
+        */
+        var btnSend = document.querySelector('button');
+        btnSend.addEventListener('click', function(){
+            var restTime = 6;
+            btnSend.disabled = true;
+            // btnSend.innerHTML = restTime + '秒后重新发送';
+            var timer = setInterval(function(){      
+                if(restTime == 0){
+                    btnSend.disabled = false;
+                    btnSend.innerHTML = '发送';
+                    clearInterval(timer);
+                }else{ 
+                    btnSend.innerHTML = restTime + '秒后重新发送';
+                    restTime--;
+                }
+            }, 1000);  
+        })
+    </script>
+</body>
+</html>

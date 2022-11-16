@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operate Element in Html by JS</title>
+    <style>
+        img {
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p id="showTime"></p>
+        <img src="images/img2.png" title="" alt="">
+    </div>
+    <script>
+        var nowDate = new Date();
+        var nowHour = nowDate.getHours();
+        var nowMinute = nowDate.getMinutes();
+        var nowSecond = nowDate.getSeconds();
+
+        var showTime = document.querySelector('#showTime');
+        showTime.innerHTML = nowHour + ':' + nowMinute + ':' + nowSecond;
+        var imgShowTime = document.querySelector('img');
+        if (nowSecond % 3 == 0) {
+            imgShowTime.src = 'images/img1.png';
+        } else if (nowSecond % 4 == 0) {
+            imgShowTime.src = 'images/img2.png';
+        }
+    </script>
+</body>
+
+</html>

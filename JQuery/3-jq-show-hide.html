@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element show & hide</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        
+        .test{
+            height: 200px;
+            width: 100px;
+            background-color: #ccc;
+        }
+
+        .test2{
+            height: 200px;
+            width: 100px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <button id="show">show</button>
+    <button id="hide">hide</button>
+    <button id="toggle">toggle</button>
+    <div class="test"></div>
+
+    <button id="slideDown">silde down</button>
+    <button id="slideUp">slide up</button>
+    <button id="slideToggle">slide toggle</button>
+    <div class="test2"></div>
+
+    <script>
+        // 元素显示与隐藏
+        $('#show').on('click', function(){
+            $('.test').show();
+        })
+
+        $('#hide').on('click', function(){
+            $('.test').hide();
+        })
+
+        $('#toggle').on('click', function(){
+            $('.test').toggle();
+        })
+
+        // 元素滑动 切换
+        $('#slideDown').on('click', function(){
+            $('.test2').slideDown();
+        })
+
+        $('#slideUp').on('click', function(){
+            $('.test2').slideUp();
+        })
+
+        $('#slideToggle').on('click', function(){
+            $('.test2').slideToggle();
+        })
+    </script>
+</body>
+</html>

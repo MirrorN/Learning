@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String </title>
+    <script>
+        function print(val){
+            console.log(val);
+        }
+        // 查找数组中有多少指定的字符 并返回所有索引
+        function func1(){
+            var str = "aansfnandnandf";
+            var res = [];
+            // var index = str.indexOf('a');
+
+            // while(index != -1){
+            //     res.push(index);
+            //     index = str.indexOf('a', index+1);
+            // }
+            // console.log(res);
+            
+            var index = 0;
+            while(str.indexOf('a',index)!=-1){
+                index = str.indexOf('a', index);
+                res.push(index);  
+                index += 1;
+            }
+            console.log(res);
+        }
+        // func1();
+
+        function func2(){
+            var str = "acbdnfr";
+            var ch1 = str.charAt(0);
+            print(ch1);
+            var ch2 = str.charCodeAt(0);
+            print(ch2);
+            print(str[0]);  
+        }
+
+        // func2();
+
+        function func3(){
+            var obj = {
+                name:"name",
+                age:16,
+                cal:function(a, b){
+                    return a+b;
+                }
+            }
+
+            print(obj['name']);
+            print(obj.age);
+            print(obj.cal(1,2));
+        }
+
+        // func3();
+        function func4(){
+            var obj = {};
+            obj.a = 10;
+            obj.b = 11;
+            for(k in obj){
+                print(obj[k]);
+            }
+        }
+        // func4();
+
+        // 统计字符串中字符的数量
+        function func5(){
+            var str = "abdnefacdnabf";
+            var obj = {};
+            for(var i=0; i<str.length; i++){
+                if(obj[str.charAt(i)]){
+                    obj[str[i]]++;
+                }else{
+                    obj[str[i]] = 1;
+                }
+            }
+            for(k in obj){
+                print(k + " : " + obj[k]);
+            }
+        }
+        // func5();
+
+        // 字符串拼接 截取
+        function func6(){
+            var str1 = "abc";
+            var str2 = "123";
+            var str3 = "dde";
+            var res = str1.concat(str2, str3);
+            print(str1);
+            print(res);
+
+            var res1 = res.substr(0,3);
+            print(res1);
+
+            var res2 = res.substr(0,3);
+            print(res2);
+        }
+        // func6();
+
+        // 字符串替换、转化数组
+        function func7(){
+            var str1 = "asvneandfeads";
+            var res1 = str1.replace('a', 'A');
+            print(res1);
+            print(str1);
+
+            var res2 = "";
+            while(str1.indexOf('a')!=-1){
+                str1 = str1.replace('a', 'A');
+            }
+            print(str1);
+
+            var str2 = "a,b,c,d";
+            var res3 = str2.split(',');
+            print(res3);
+        }
+        // func7();
+        
+        // 大小写转化
+        function func8(){
+            var str = "DGGFdadf";
+            var res1 = str.toUpperCase();
+            var res2 = str.toLowerCase();
+
+            print(res1);
+            print(res2);
+        }
+        func8();
+    </script>
+</head>
+<body>
+    Test for String, Number, Boolean.
+</body>
+</html>

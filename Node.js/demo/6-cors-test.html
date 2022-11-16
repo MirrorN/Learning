@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS test</title>
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="getBtn">get</button>
+    <button id="postBtn">post</button>
+    <button id="deleteBtn">delete</button>
+    <script>
+        $(function () {
+            $('#getBtn').on('click', function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://127.0.0.1:80/api/get',
+                    data: {name: 'zs', age: 20},
+                    success: function(res){
+                        console.log(res);
+                    },
+                });
+            });
+
+            $('#postBtn').on('click', function(){
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://127.0.0.1:80/api/post',
+                    data:{name: 'ls', age: 20},
+                    success:function(res){
+                        console.log('res');
+                    },
+                });
+            });
+
+            $('#deleteBtn').on('click', function(){
+               $.ajax({
+                type: 'DELETE',
+                url: 'http://127.0.0.1/api/delete',
+                success: function(res){
+                    console.log(res);
+                },
+               }) 
+            });
+        });
+    </script>
+</body>
+
+</html>

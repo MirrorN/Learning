@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        li{
+            list-style-type: none;
+        }
+
+        .tab{
+            width: 600px;
+            margin: 50px auto;
+            border: 1px solid black;
+        }
+
+        .tab-list{
+            /* 由于 li 设置了浮动 脱离原始文档 所以要对父div设置高度 */
+            height: 40px;
+            background: #f1f1f1;
+            border: 1px solid #ccc;
+        }
+
+        .tab-list li{
+            float: left;
+            height: 38px;
+            padding: 0 20px;
+            line-height: 38px;
+            cursor: pointer;
+        }
+        
+        .item{
+            display: none;
+        }
+
+        .current{
+            background-color: #c81623;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <div class="tab-list">
+            <ul>
+                <li>列表项1</li>
+                <li>列表项2</li>
+                <li>列表项3</li>
+                <li>列表相4</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="item">some text 1</div>
+            <div class="item">some text2</div>
+            <div class="item">some text3</div>
+            <div class="item">some text4</div>
+        </div>
+    </div>
+
+    <script>
+        var lis = document.querySelectorAll('li');
+        var items = document.querySelectorAll('.item');
+
+        for(var i=0; i<lis.length; i++){
+            // 必须要对每个li设置 index 而不能在下面循环中使用 i 
+            // 因为读取到的 i 为全局变量 循环后i的值固定为4（最后的值）
+            lis[i].setAttribute('index', i);
+            // 1. 为每个 li 添加点击事件
+            lis[i].onclick = function(){
+                // 排他 将所有的样式取消
+                for(var j=0; j<lis.length; j++){
+                    lis[j].className = '';
+                }
+                // 设置特定的元素样式
+                this.className = 'current';
+
+                // 2. 设置对应div的display
+                var index = this.getAttribute('index');
+                // console.log(index); // 输出结果为正常 li 的序号
+                // console.log(i);  // 输出结果固定为 4
+                for(var j=0; j<items.length; j++){
+                    items[j].style.display = 'none';
+                }
+                items[index].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

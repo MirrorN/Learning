@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operate style by JS</title>
+    <style>
+        /* div {
+            height: 100px;
+            width: 100px;
+            background-color: lightblue;
+        } */
+        .box{
+            position: relative;
+            width: 174px;
+            margin: 10px auto;
+            color: #f40;
+            /* border: 1px solid black; */
+            text-align: center;
+        }
+        .close-btn{
+            position: absolute;
+            top: -1px;
+            left: -12px;
+            height: 14px;
+            width: 14px;
+            line-height: 14px;
+            border: 1px solid #ccc;
+            font-family: Arial, Helvetica, sans-serif;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div></div> -->
+    <script>
+        function func1() {
+            var div = document.querySelector('div');
+            div.onclick = function () {
+                div.style.backgroundColor = 'lightgreen';
+                div.style.width = '200px';
+            }
+        }
+        // func1();
+    </script>
+
+    <div class="box">
+        taobao code
+        <img src="images/tao.png">
+        <i class="close-btn">×</i>
+    </div>
+
+    <script>
+        var divShow = document.querySelector('.box');
+        var closeBtn = document.querySelector('.close-btn');
+        closeBtn.onclick = function(){
+            divShow.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        span {
+            display: inline-block;
+            margin-right: 10px;
+            height: 40px;
+            width: 40px;
+            background-color: #000;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="hour"></span>
+        <span class="minute"></span>
+        <span class="second"></span>
+    </div>
+
+    <script>
+        var hour = document.querySelector('.hour');
+        var minute = document.querySelector('.minute');
+        var second = document.querySelector('.second');
+        var inputTime = +new Date('2022-8-8 10:48:00');
+
+        countDown();
+        var interval = setInterval(countDown, 1000);
+
+        function countDown() {
+            var nowTime = +new Date();
+            // 获取时间差 毫秒为单位
+            var times = (inputTime - nowTime) / 1000;
+            // 小数结果转化为整数
+            hours = parseInt(times / 60 / 60 % 24);
+            minutes = parseInt(times / 60 % 60);
+            seconds = parseInt(times % 60);
+
+            var h = hours >= 10 ? hours : '0' + hours;
+            var m = minutes >= 10 ? minutes : '0' + minutes;
+            var s = seconds >= 10 ? seconds : '0' + seconds;
+            hour.innerHTML = h;
+            minute.innerHTML = m;
+            second.innerHTML = s;
+
+            // 倒计时结束 停止计时器
+            if(s == 0){
+                console.log('stop');
+                clearInterval(interval);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

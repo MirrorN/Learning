@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        .test1{
+            margin: 10px;
+            height: 100px;
+            width: 100px;
+            background-color: #ccc;
+        }
+
+        .test2{
+            margin: 10px;
+            height: 100px;
+            width: 100px;
+            background-color: #caf;
+        }
+        
+        .current{
+            background-color: #caf;
+        }
+    </style>
+</head>
+<body>
+    <div class="test1"></div>
+    <div class="test2"></div>
+    
+    <ul>
+        <li>li 1</li>
+        <li>li 2</li>
+        <li>li 3</li>
+        <li>li 4</li>
+    </ul>
+
+    <ol>
+
+    </ol>
+
+    <script>
+        $(function(){
+            // 绑定单个事件
+            function func1(){
+                $('.test1').click(function(){
+                   $('.test2').css('backgroundColor', 'lightgreen'); 
+                });
+
+                $('.test1').on('mouseover', function(){
+                    $('.test2').stop().toggle(500);
+                })
+            }
+
+            // func1();
+
+            // 使用 on 绑定多个事件
+            function func2(){
+                // 以对象方式传入
+                $('.test1').on({
+                   click: function(){
+                    $(this).css('background', 'lightgreen');
+                   },
+                   mouseenter: function(){
+                    $(this).css('width', 150);
+                   },
+                   mouseleave: function(){
+                    $(this).css('width', 100);
+                   } 
+                });
+            }
+
+            // func2();
+
+            // 同时为多个触发事件定义效果
+            function func3(){
+                $('.test1').on('mouseenter mouseleave', function(){
+                    $(this).toggleClass('current');
+                })
+            }
+            // func3();
+
+            // on - 事件委派
+            function func4(){
+                $('ul').on('click', 'li', function(){
+                    console.log($(this).text());
+                });
+            }
+            // func4();
+
+            // on 为动态产生元素绑定事件
+            function func5(){
+                $('ol').on('click', function(){
+                    alert('new one');
+                });
+
+                $('ol').append('<li>new onw</li>');
+            }
+            func5();
+        })
+    </script>
+</body>
+</html>

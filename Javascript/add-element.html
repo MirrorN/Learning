@@ -1,0 +1,26 @@
+<!-- 添加元素 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add element</title>
+</head>
+<body>
+    <ul>
+        <li>ddd</li>
+    </ul>
+    <script>
+        var addLi = document.createElement('li');
+        var ul = document.querySelector('ul');
+        // 在最后追加 使用append方法
+        ul.appendChild(addLi);
+        
+        // 插入方式
+        var liNode = document.createElement('li');
+        liNode.innerHTML = "hhh";
+        ul.insertBefore(liNode, ul.children[0]);
+    </script>
+</body>
+</html>

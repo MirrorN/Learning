@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Basic</title>
+    <!-- 引入 jQuery 文件 -->
+    <script src="jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .test {
+            margin: 50px;
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test"></div>
+    <ul>
+        <li>li 1</li>
+        <li>li 2</li>
+        <li>li 3</li>
+        <li>li 4</li>
+        <li>li 5</li>
+    </ul>
+    <script>
+        // 入口函数
+        $(function () {
+            function convert() {
+                // DOM 与 jq 对象互相转化
+                var divTest = document.querySelector('div');
+                // 转化为 jQuery 对象
+                $(divTest)
+
+                // 转化为 DOM （jq得到的是伪数组形式的结果，直接取索引即可）
+                $('div')[0]
+                $('div').get(0)
+            }
+            
+            function selector(){
+                // 所有后代
+                $('ul li')
+                // 直接后代
+                $('ul>li')
+
+                // 选择第二个li元素q
+                $('li').eq(2)
+            }
+        })
+    </script>
+</body>
+
+</html>

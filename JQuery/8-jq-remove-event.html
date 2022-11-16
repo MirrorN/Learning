@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove event</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        .test1{
+            margin: 20px;
+            height: 100px;
+            width: 100px;
+            background-color: #ccc;
+        }
+
+        .test2{
+            margin: 20px;
+            height: 100px;
+            width: 100px;
+            background-color: #caf;
+        }
+
+        .test3{
+            margin: 20px;
+            height: 100px;
+            width: 100px;
+            background-color: #c85;
+        }
+    </style>
+</head>
+<body>
+    <div class="test1"></div>
+    
+    <div class="test2"></div>
+
+    <div class="test3"></div>
+
+    <script>
+        $(function(){
+            // 绑定事件
+            $('.test1').on({
+                'mouseenter': function(){
+                    console.log('enter');
+                },
+                'mouseleave': function(){
+                    console.log('outer');
+                },
+                'click': function(){
+                    console.log('click');
+                }
+            });
+
+            $('.test2').on({
+                'mouseenter': function(){
+                    console.log('enter');
+                },
+                'mouseleave': function(){
+                    console.log('outer');
+                },
+                'click': function(){
+                    console.log('click');
+                }
+            });
+
+            // 解绑事件
+            $('.test1').off();
+            $('.test2').off('click');
+
+            $('.test2').one('click', function(){
+                alert('one time.');
+            })
+
+
+            // 事件对象
+            $(document).on('click', function(){
+                console.log('document click');
+            })
+
+            $('.test3').on('click', function(event){
+                console.log('div click');
+                event.stopPropagation();
+            })
+        })
+    </script>
+</body>
+</html>

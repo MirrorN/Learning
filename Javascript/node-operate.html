@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node operate</title>
+</head>
+<body>
+    <div class="div1">
+        <ul class="ul1">
+            <li>asdf</li>
+            <li>we</li>
+            <li>rre</li>
+            <li>dec</li>
+        </ul>
+    </div>
+
+    <script>
+        var li = document.querySelector('li');
+        console.log(li);
+        // 得到最近的父节点
+        console.log(li.parentNode);
+
+        //对于子节点 两种获取方式
+        var ul = document.querySelector('.ul1');
+        // 输出结果包含元素节点和文本节点-换行
+        var child1 = ul.childNodes;
+        console.log(child1);
+
+        // 非标准方式 输出结果只包含元素节点
+        var child2 = ul.children;
+        console.log(child2);
+    </script>
+</body>
+</html>

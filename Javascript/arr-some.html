@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = ['a', 'b', 'c', 'd']
+        arr.forEach((item, index) => {
+            console.log('1')
+            if (item === 'c') {
+                console.log(index)
+                return
+            }
+        })
+
+        arr.some((item, index) => {
+            console.log('1')
+            if (item === 'c') {
+                console.log(index)
+                return true
+            }
+        })
+
+        const arr1 = [
+            { name: 'zs', status: true },
+            { name: 'ls', status: false },
+            { name: 'ww', status: true },
+        ]
+        /* const res = arr1.every((item)=>{
+            return item.status === true
+        }) */
+        const res = arr1.every(item => item.status)
+        // console.log(res)
+
+        const goods = [
+            { name: 'book', status: true, price: 10, count: 2 },
+            { name: 'ball', status: false, price: 20, count: 3 },
+            { name: 'bag', status: true, price: 30, count: 1 },
+        ]
+
+        let total = 0
+        goods.filter(item => item.status).forEach((item) => {
+            total += item.count * item.price
+        })
+        console.log(total)
+
+        const total2 = goods.filter(item => item.status).reduce((amt, item) => {
+            return amt += item.price * item.count
+        }, 0)
+
+        const total3 = goods.filter(item => item.status).reduce((amt, item) => amt += item.price * item.count, 0)
+        console.log(total3)
+
+    </script>
+</body>
+
+</html>

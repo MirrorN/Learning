@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mousemove Test</title>
+    <style>
+        img{
+            display: none;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <img src="images/angel.gif" alt="angel">
+    <script>
+        document.addEventListener('mousemove', function(e){
+            var img = document.querySelector('img');
+            img.style.display = 'block';
+
+            // 一定要加 px 单位
+            // 根据图片的大小向上向左偏移一半大小 让鼠标指针指向图片中心
+            img.style.top = e.pageY - 40 +'px';
+            img.style.left = e.pageX - 50 +'px';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test for jQuery</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin-bottom: 5px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <button id="change">click</button>
+    <button>click</button>
+    <button>click</button>
+    <button>click</button>
+    <button>click</button>
+    <button>click</button>
+
+    <script>
+        $(function(){
+            // $('div:first').css('background', '#000');
+            // $('div:last').css('background', '#222');
+            // $('div:eq(2)').css('background', '#ebebeb');
+            // $('div:even').css('background', 'lightgreen');
+
+            function funcSiblingTest(){
+                $('div:eq(2)').siblings('div').css('background', 'lightgreen');
+                $('div').eq(3).css('background', 'skyblue');
+            }
+
+            // funcSiblingTest();
+
+            function funcATest(){
+                // 打印当前li的索引
+                $('.di li').click(function(){
+                    console.log($(this).index());
+                })
+            }
+
+            // funcATest();
+            
+            function funcBtn(){
+                $('button').click(function(){
+                   $(this).css('color', 'white').siblings().css('color', 'black'); 
+                });
+            }
+            
+            // funcBtn();
+
+            function funcChange(){
+                $('#change').click(function(){
+                    $('div').css({
+                        height: '300px',
+                        width: 300,
+                        backgroundColor: 'skyblue',
+                    });
+                });
+            }
+
+            // funcChange();
+
+
+        })
+    </script>
+    <div></div>
+
+</body>
+</html>

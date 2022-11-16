@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bidirectional data binding</title>
+    <script src="./lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" :value="username">
+        <br>
+        <input type="text" v-model="username">
+        <br>
+        <select name="" id="" v-model="city">
+            <option value="">choose</option>
+            <option value="1">Beijing</option>
+            <option value="2">Jinan</option>
+            <option value="3">Shanghai</option>
+        </select>
+    </div>
+
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data:{
+                username: 'zhangsan',
+                city: ''
+            }
+        })
+    </script>
+</body>
+
+</html>

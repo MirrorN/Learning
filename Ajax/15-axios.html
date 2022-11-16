@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios</title>
+    <script src="./lib/axios.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+    <button id="btnGet">get</button>
+    <button id="btnPost">Post</button>
+    <button id="btnAxiosGet">Axios-Get</button>
+    <button id="btnAxiosPost">Axios-Post</button>
+    <button id="btnGet1">ajax get</button>
+    <script>
+        $(function(){
+            var urlPre = 'http://www.liulongbin.top:3006/api/';
+
+            $('#btnGet1').on('click', function(){
+               $.ajax({
+                    method: 'GET',
+                    url: urlPre + 'get',
+                    success: function(res){
+                        console.log(res);
+                    }
+               }); 
+            });
+
+            // 测试 axios 发起 get 请求
+            $('#btnGet').on('click', function(){
+                let url = urlPre + 'get';
+                let person = {name: 'zs', age: 20};
+                axios.get(url, {params: person}).then((res)=>{
+                    console.log(res);
+                    console.log(res.data);
+                });
+            });
+
+            // 测试 axios 发起 post 请求
+            $('#btnPost').on('click', function(){
+                let url = urlPre + 'post';
+                var addr = {location: 'beijing', address: 'shunyi'};
+                axios.post(url, addr).then(function(res){
+                    console.log(res);
+                    console.log(res.data);
+                });
+            });
+
+            // 测试 axios 直接发起 get 请求
+            $('#btnAxiosGet').on('click', function(){
+                let url = urlPre + 'get';
+                let person = {name: 'zs', age: 20};
+                axios({
+                    method: 'GET',
+                    url: url,
+                    params: person,
+                }).then(function(res){
+                    console.log(res);
+                    console.log(res.data);
+                });
+            });
+
+            // 测试 axios 直接发起 post 请求
+            $('#btnAxiosPost').on('click', function(){
+                let url = urlPre + 'post';
+                let person = {name: 'zs', age: 20};
+                axios({
+                    method: 'POST',
+                    url: url,
+                    data: person,
+                    
+                }).then(function(res){
+                    console.log(res);
+                    console.log(res.data);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

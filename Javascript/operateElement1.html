@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test for Element Operation</title>
+    <style>
+        div {
+            height: 100px;
+            width: 250px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="time">
+        <span>2019-10-3</span>
+        test 
+    </div>
+    <button id="btn">click</button>
+
+    <script>
+        var divTime = document.getElementById('time');
+        // divTime.innerText = getNowDate();
+        var btnChange = document.querySelector('#btn');
+        btnChange.onclick = function(){
+            divTime.innerText = "some things";
+        }
+
+        function getNowDate() {
+            var nowDate = new Date();
+            var nowYear = nowDate.getFullYear();
+            var nowMonth = nowDate.getMonth();
+            var nowDay = nowDate.getDate();
+            var nowHour = nowDate.getHours();
+            var nowMintue = nowDate.getMinutes();
+            var nowSecond = nowDate.getSeconds();
+
+            return nowYear + "年" + nowMonth + "月" + nowDay + "日 " + nowHour + ":" + nowMintue + ":" + nowSecond;
+        }
+
+        // element.innerText/HTML 同样可以读出内容
+        var innerText = divTime.innerText;
+        var innerHtml = divTime.innerHTML;
+        console.log(innerText);
+        console.log(innerHtml);
+    </script>
+</body>
+
+</html>

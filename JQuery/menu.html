@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        ul{
+            width: 400px;
+            margin: 50px auto;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        .nav>li{
+            position: relative;
+            float: left;
+            height: 40px;
+            width: 100px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #ccc;
+        }
+
+        .nav>li:hover{
+            background-color: rgb(236, 235, 235);
+        }
+
+        /* nav中所有的a都要以块级元素展示
+        以使得鼠标点击范围不只局限于文字部分
+        并且由于后代中所有的 a 标签都应如此
+        因此使用后代选择器而非直接后代 */
+        .nav li a{
+            display: block;
+            height: 100%;
+            width: 100%;
+            line-height: 40px;
+        }
+        
+        /* 让ul紧贴上面横向的li 可以使用绝对定位 同时设置父元素li为相对定位 */
+        .nav ul{
+            display: none;
+            width: 100px;
+            margin-top: 0;
+        }
+        
+        .nav ul>li:hover{
+            background-color: #ccc;
+            color: white;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <script>
+        $(function(){
+            $('.nav>li').mouseover(function(){
+               $(this).children('ul').show(); 
+            });
+            $('.nav>li').mouseleave(function(){
+                $(this).children('ul').hide();
+            });
+        });
+    </script>
+    <ul class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test for JS object</title>
+    <script>
+        function func1(n) {
+            for (var i = 0; i < n; i++) {
+                for (var j = 0; j < i + 1; j++) {
+                    console.log("*");
+                }
+            }
+        }
+
+        function func2() {
+            var arr = [1, 2, 3];
+            for (val in arr) {
+                console.log(val);
+            }
+        }
+        // func2();
+
+        function func3() {
+            var v1 = 10;
+            var v2 = 20;
+            console.log("v1: " + v1);
+            console.log("v2: " + v2);
+            var tmp = v1;
+            v1 = v2;
+            v2 = tmp;
+            console.log("v1: " + v1);
+            console.log("v2: " + v2);
+        }
+
+        // func3();
+
+        function func4() {
+            var arr = [1, 6, 3, 8, 4, 2, 9];
+            for (var val in arr) {
+                console.log(val);
+            }
+
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j + 1] < arr[j]) {
+                        var tmp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = tmp;
+                    }
+                }
+            }
+            for (var val in arr) {
+                console.log(val);
+            }
+        }
+        // func4();
+
+        function func5() {
+            function Person(name, age, gender) {
+                this.name = name;
+                this.age = age;
+                this.gender = gender;
+                this.sing = function(sang){
+                    console.log(sang);
+                }
+            }
+
+            var p = new Person("zhangsan", 19, "man");
+            for(var k in p){
+                console.log(k + " " + p[k]);
+            }
+            p.sing("Blank Space");
+
+            console.log(typeof(p));
+        }
+        func5();
+
+    </script>
+</head>
+
+<body>
+    <h3>Test for JS object.</h3>
+</body>
+
+</html>

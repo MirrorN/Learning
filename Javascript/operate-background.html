@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <button>open or close</button>
+    <script>
+        var btn = document.querySelector('button');
+        var flag = false;
+        var body = document.querySelector('body');
+        btn.onclick = function(){
+            if(!flag){
+                body.style.backgroundColor = 'black';
+                flag = true;
+            }else{
+                body.style.backgroundColor = 'white';
+                flag = false;
+            }
+        }
+    </script>
+</body>
+</html>

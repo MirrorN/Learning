@@ -1,0 +1,47 @@
+<!-- 测试 flex 布局 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex layout</title>
+  <style>
+    div {
+      display: flex;
+      flex-direction: row;
+      /* justify-content: start; */
+      justify-content: space-between;
+      /* flex-direction: row-reverse; */
+      /* flex-direction: column-reverse; */
+      height: 200px;
+      width: 800px;
+      background-color: #4e9999;
+    }
+
+    div span {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      height: 30px;
+      width: 80px;
+      background-color: #ccc;
+      /* flex: 1; */
+    }
+
+    /* div>span:nth-child(2) {
+      width: 120px;
+    } */
+  </style>
+</head>
+
+<body>
+  <div>
+    <span>a</span>
+    <span>b</span>
+    <span>c</span>
+    <!-- <span>d</span> -->
+  </div>
+</body>
+
+</html>

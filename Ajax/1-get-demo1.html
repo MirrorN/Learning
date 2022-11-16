@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax get</title>
+    <script src="./lib/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btnGet">get</button>
+    <button id="btnGetP">get params</button>
+    <button id="btnPost">post</button>
+    <button id="btnAjaxGet">ajax get</button>
+    <button id="btnAjaxPost">ajax post</button>
+    <script>
+        $(function () {
+            // 无参 get 请求
+            $('#btnGet').on('click', function () {
+                $.get('http://liulongbin.top:3006/api/getbooks', function (res) {
+                    console.log(res);
+                });
+            });
+
+            // 带参 get 请求
+            $('#btnGetP').on('click', function () {
+                $.get('http://liulongbin.top:3006/api/getbooks', { id: 1 }, function (res) {
+                    console.log(res);
+                });
+            });
+
+            // post 请求
+            const book = { bookname: 'book', author: 'author', publisher: 'publisher1' };
+            $('#btnPost').on('click', function () {
+                $.post('http://liulongbin.top:3006/api/addbook', book, (res) => {
+                    console.log(res);
+                });
+            });
+
+            // ajax-get
+            $('#btnAjaxGet').on('click', function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://liulongbin.top:3006/api/getbooks',
+                    data: { id: 1 },
+                    success: function (res) {
+                        console.log(res);
+                    },
+                });
+            });
+
+            // ajax-post
+            $('#btnAjaxPost').on('click', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://liulongbin.top:3006/api/addbook',
+                    data: { bookname: 'book', author: 'author', publisher: 'pub' },
+                    success: function (res) {
+                        console.log(res);
+                    },
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery.js"></script>
+    <script src="./lib/vue2.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #show{
+            height: 200px;
+            width: 200px;
+            border: 1px solid black;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        R: <input type="text" v-model.number="r"><br>
+        G: <input type="text" v-model.number="g"><br>
+        B: <input type="text" v-model.number="b"><br>
+        <!-- :style 绑定一个样式对象 它的值是一个{}样式对象 -->
+        <!-- <div id="show" :style="{backgroundColor: `rgb(${r}, ${g}, ${b})`}"> -->
+        <div id="show" :style="{backgroundColor: rgb}">
+            <!-- rgb({{r}}, {{g}}, {{b}}) -->
+            {{rgb}}
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                r: 0,
+                g: 0,
+                b: 0,
+                // 下面声明的rgb计算属性相当于在 data 节点下挂载一个 rgb: rgb() 属性
+            },
+            // 计算属性挂再 computed 节点下
+            // 虽然声明为方法 但使用时按照属性格式来使用
+            computed:{
+                rgb(){
+                    return `rgb(${this.r}, ${this.g}, ${this.b})`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

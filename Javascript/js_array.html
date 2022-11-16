@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Object Demo</title>
+    <script>
+        function print(val){
+            console.log(val);
+        }
+        function func1(){
+            var arr1 = [1,2,3];
+            var arr2 = new Array(2);  //创建长度为2 两个元素都为空的数组
+            var arr3 = new Array(2, 3);
+            print(arr1);
+            print(arr2);
+            print(arr3);
+        }
+
+        // func1();
+
+        function func2(){
+            var arr1 = [];
+            var arr2 = {};
+
+            console.log(arr1 instanceof Array);
+            console.log(arr2 instanceof Array);
+
+            console.log(Array.isArray(arr1));
+            console.log(Array.isArray(arr2));
+        }
+
+        // func2();
+
+        function func3(){
+            var arr = [1,2,3];
+            arr.push(4);
+            console.log(arr);
+            var delEle = arr.pop();
+            console.log(delEle);
+            print(arr);
+            arr.unshift(0);
+            print(arr);
+            var delEle2 = arr.shift();
+            print(delEle);
+            print(arr);
+        }
+        
+        // func3();
+
+        function func4(){
+            var arr = [1,2,3];
+            arr.push(4);
+            console.log(arr.push(5));
+        }
+        // func4();
+
+        function func5(){
+            var arr = [100, 200, 340, 400];
+            var res = new Array();
+            for(var i=0; i<arr.length; i++){
+                if(arr[i] >200){
+                    res.push(arr[i]);
+                }
+            }
+            console.log(res);
+        } 
+
+        function func6(){
+            var arr = [1,2,3,4];
+            arr.reverse();
+            console.log(arr);
+        }
+        // func6();
+
+        function func7(){
+            var arr = [1, 11, 2, 23, 3, 33];
+            arr.sort(function(a, b){
+                return a-b;
+            });
+            console.log(arr);
+        }
+        // func7();
+
+        function func8(){
+            var arr = [1,1,2,2,3,3];
+            console.log(arr.indexOf(1));
+            console.log(arr.lastIndexOf(1));
+        }
+        // func8();
+
+        // 删除数组中重复的元素
+        function func9(){
+            var arr = ['a', 'b', 'a', 'c','a','c','d'];
+            console.log(arr);
+            var res = new Array();
+            for(var i=0; i<arr.length; i++){
+                if(res.indexOf(arr[i])==-1){
+                    res.push(arr[i]);
+                }
+            }
+            console.log(res);
+        }
+        // func9(); 
+
+        function func10(){
+            var arr = [1,2,3,4];
+            var res = arr.toString();
+            console.log(res);
+
+            var res2 = arr.join('--');
+            console.log(res2);
+        }
+        // func10();
+
+        function func11(){
+            var arr1 = [1,2,3];
+            var arr2 = [2,3,4];
+            var arr3 = [3,4,5];
+            var res = arr1.concat(arr2, arr3);
+            console.log(arr1);
+            console.log(arr2);
+            console.log(res);
+            var res2 = res.slice(0,3);
+            console.log(res2);
+        }
+        func11();
+    </script>
+</head>
+<body>
+    <h3>Array object</h3>
+</body>
+</html>

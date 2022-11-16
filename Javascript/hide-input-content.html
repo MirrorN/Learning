@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide or Show the content in Input</title>
+    <style>
+        input{
+            color: #ccc;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="some text.">
+    <!-- <script>
+        var input = document.querySelector('input');
+        var defaultContent = input.value;
+
+        input.onfocus = function(){
+            if(this.value === defaultContent){
+                input.value = '';
+            }
+            // 修改文本颜色
+            this.style.color = '#000';
+        }
+        input.onblur = function(){
+            if(this.value === ''){
+                this.value = defaultContent;
+            }
+            this.style.color= '#ccc';   
+        }
+    </script> -->
+    <script>
+        var v1 = '1';
+        var v2 = 1;
+        if(v1 == v2){
+            console.log('== equal');
+        }else{
+            console.log('== not equal');
+        }
+
+        if(v1 === v2){
+            console.log('equal');
+        }else{
+            console.log('=== not equal');
+        }
+    </script>
+</body>
+</html>

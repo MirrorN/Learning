@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar demo</title>
+    <script src="./lib/three.min.js"></script>
+    <script src="./lib/OrbitControls.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        #show {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 530px;
+            height: 380px;
+            width: 600px;
+            border-radius: 8px;
+            opacity: 0.8;
+            background-color: #ccc;
+            border: 1px solid black;
+        }
+
+        #show i {
+            position: absolute;
+            right: 0px;
+            top: -5px;
+            font-size: 26px;
+            font-style: normal;
+            cursor: pointer;
+        }
+
+        #content {
+            margin: 10px auto;
+            height: 360px;
+            width: 580px;
+            /* opacity: 0.5; */
+            /* background-color: rgb(161, 238, 234); */
+        }
+
+        #btnReset{
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="show">
+        <div id="content"></div>
+        <i id="close">×</i>
+    </div>
+
+    <button id="btnReset">reset</button>
+
+    <script>
+        var chartDiv = $('#content')[0];
+        $('#close').on('click', function (e) {
+            $('#show').hide();
+            chartDiv.removeAttribute("_echarts_instance_");
+        });
+
+
+    </script>
+
+    <script>
+        function drawLine() {
+            var myChart = echarts.init(chartDiv);
+
+            option = {
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {},
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: { readOnly: false },
+                        magicType: { type: ['line', 'bar'] },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} °C'
+                    }
+                },
+                series: [
+                    {
+                        name: 'Highest',
+                        type: 'line',
+                        data: [10, 11, 13, 11, 12, 12, 9],
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: 'Max' },
+                                { type: 'min', name: 'Min' }
+                            ]
+                        },
+                        markLine: {
+                            data: [{ type: 'average', name: 'Avg' }]
+                        }
+                    },
+                    {
+                        name: 'Lowest',
+                        type: 'line',
+                        data: [1, -2, 2, 5, 3, 2, 0],
+                        markPoint: {
+                            data: [{ name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }]
+                        },
+                        markLine: {
+                            data: [
+                                { type: 'average', name: 'Avg' },
+                                [
+                                    {
+                                        symbol: 'none',
+                                        x: '90%',
+                                        yAxis: 'max'
+                                    },
+                                    {
+                                        symbol: 'circle',
+                                        label: {
+                                            position: 'start',
+                                            formatter: 'Max'
+                                        },
+                                        type: 'max',
+                                        name: '最高点'
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+        }
+        
+        function drawBar() {
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: 'Direct',
+                    type: 'bar',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: 'Email',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Union Ads',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: 'Video Ads',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: 'Search Engine',
+                    type: 'bar',
+                    data: [862, 1018, 964, 1026, 1679, 1600, 1570],
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    markLine: {
+                        lineStyle: {
+                            type: 'dashed'
+                        },
+                        data: [[{ type: 'min' }, { type: 'max' }]]
+                    }
+                },
+                {
+                    name: 'Baidu',
+                    type: 'bar',
+                    barWidth: 5,
+                    stack: 'Search Engine',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [620, 732, 701, 734, 1090, 1130, 1120]
+                },
+                {
+                    name: 'Google',
+                    type: 'bar',
+                    stack: 'Search Engine',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [120, 132, 101, 134, 290, 230, 220]
+                },
+                {
+                    name: 'Bing',
+                    type: 'bar',
+                    stack: 'Search Engine',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [60, 72, 71, 74, 190, 130, 110]
+                },
+                {
+                    name: 'Others',
+                    type: 'bar',
+                    stack: 'Search Engine',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [62, 82, 91, 84, 109, 110, 120]
+                }
+            ]
+        };
+        var myChart = echarts.init(chartDiv);
+        myChart.setOption(option);
+    }
+    </script>
+
+    <script>
+        // 场景以及加载器
+        var scene = new THREE.Scene();
+        var texLoader = new THREE.TextureLoader();
+
+        // 坐标轴
+        var axesHelper = new THREE.AxesHelper(500);
+        scene.add(axesHelper);
+
+        // 保存可被点击检测的所有物体
+        var intersectsArr = [];
+        var data = getData();
+
+        // 太阳
+        var sun = createSphereMesh(data.sun.radius, data.sun.url);
+        sun.name = data.sun.name;
+        intersectsArr.push(sun);
+        scene.add(sun);
+
+        /*
+            先创建 Group 并添加进场景 这样在后续过程中向 Group 添加物体即可
+        */
+        var planetGroup = new THREE.Group();
+        scene.add(planetGroup);
+        data.planet.forEach(function (obj) {
+            var planet = null;
+            if (obj.ring) {
+                planet = createRingPlanetMesh(obj.sphere.radius, obj.sphere.url, obj.ring.innerRadius, obj.ring.outerRadius, obj.ring.url);
+            } else {
+                planet = createSphereMesh(obj.radius, obj.url);
+            }
+           /*
+                为 planet 是几何体网格模型 现在对其追加 名称、半径等属性
+                name: 用于对点击物体的判别 注意对于 Group 中的物体 虽然可以通过 rayCaster.intersectObjects 的参数设置为可检测后代物体
+                    但是要对group的每个物体都添加名称才能被正确输出
+                orbitRadius: 用于轨道位置的计算
+                angle: 设置物体开始的角度
+                v: 设置物体运行速度
+           */ 
+            planet.name = obj.name;
+            if (obj.ring) {
+                planet.children[0].name = obj.name;
+                planet.children[1].name = obj.name;
+            }
+            planet.orbitRadius = obj.orbitRadius;
+            planet.angle = 0;
+            planet.v = obj.v;
+
+            planetGroup.add(planet);
+            intersectsArr.push(planet);
+
+            // 添加轨道
+            var orbit = createOrbit(planet.orbitRadius);
+            scene.add(orbit);
+        });
+
+
+        // 点击事件
+        function click(e) {
+            // 用于保存点击的物体
+            chooseMesh = null;
+            // 获取鼠标点击位置的坐标
+            let nowX = e.clientX;
+            let nowY = e.clientY;
+
+            // 转换坐标系 鼠标位置归一化为设备坐标 (-1, +1)
+            let x = (nowX / window.innerWidth) * 2 - 1;
+            let y = -(nowY / window.innerHeight) * 2 + 1;
+
+            let raycaster = new THREE.Raycaster();
+            // 通过相机位置和鼠标位置更新射线
+            raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
+            /*
+              intersectObjects() 第一个参数表示可被检测物体列表 （因此上面将所有的几何体都添加在里面）
+              第二个参数表示子代是否可以被检测到 例如group的组成元素
+              返回的结果是一个包含交叉部分的数组 [{distance, point, face, object...}, {}, {}...]
+              因此要使用相交的几何体的话 要.object
+            */
+            let intersects = raycaster.intersectObjects(intersectsArr, true);
+            var objNames = ['sun', 'Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus'];
+            console.log(intersects)
+            if (intersects.length > 0) {
+                $('#show').show();
+                console.log(intersects[0].object.name);
+                console.log(objNames.indexOf(intersects[0].object.name));
+                if(objNames.indexOf(intersects[0].object.name)<=2){
+                    drawLine();
+                }else{
+                    drawBar();
+                }
+                chooseMesh = intersects[0].object;
+            }
+        }
+
+        window.addEventListener('click', click);
+
+
+
+
+
+        // 相机、光源设置
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var k = width / height;
+        // 范围系数 值越大显示的范围越大
+        var s = 250;
+        
+        // 正投影相机对象
+        var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1500);
+        camera.position.set(651, 413, 525);
+        camera.lookAt(scene.position);
+
+
+        // 设置点光源和环境光
+        var point = new THREE.PointLight(0xffffff);
+        point.position.set(400, 200, 300);
+        scene.add(point);
+
+        var ambient = new THREE.AmbientLight(0x444444);
+        scene.add(ambient);
+
+
+        // 创建渲染器
+        var renderer = new THREE.WebGLRenderer(antialias=true);
+        // 设定渲染器尺寸 颜色
+        renderer.setSize(width, height);
+        renderer.setClearColor(0xcccccc);
+        /* renderer.domElement 表示渲染结果 一个canvas对象
+           需要向 body （或者某个局部div）中追加进去*/
+        document.body.appendChild(renderer.domElement);
+        // renderer.render(scene, camera);
+
+        function render() {
+            renderer.render(scene, camera);//执行渲染操作
+            sun.rotateY(0.005);//每次绕y轴旋转0.01弧度
+            planetGroup.children.forEach(function (obj) {
+                obj.rotation.y += 0.01 * Math.random();
+                // 计算公转角度以及位置
+                obj.angle += 0.05 / obj.orbitRadius * 400 * obj.v;
+                // console.log(obj.angle);  注意这个角度会不断增大 连续运行会超出整数范围
+                obj.position.set(obj.orbitRadius * Math.sin(obj.angle), 0, obj.orbitRadius * Math.cos(obj.angle));
+            });
+            requestAnimationFrame(render);//请求再次执行渲染函数render
+        }
+        render();
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+
+
+        $('#btnReset').on('click', function(){
+            camera.position.set(651, 413, 525)
+            controls.target.set(0, 0, 0)
+            controls.update()
+            render()
+        })
+
+
+        // 通过缓冲几何体 与 纹理贴图 返回网格模型
+        function createMesh(geometry, url) {
+            var material = new THREE.MeshBasicMaterial({
+                map: texLoader.load(url),
+                side: THREE.DoubleSide,
+            });
+            var mesh = new THREE.Mesh(geometry, material);
+            return mesh;
+        }
+
+        // 创建球体网格模型
+        function createSphereMesh(radius, url) {
+            var geometry = new THREE.SphereGeometry(radius, 100, 100);
+            return createMesh(geometry, url);
+        }
+
+        // 使用圆柱实现圆环
+        function createRingMesh(ringInnerRadius, ringOuterRadius, url) {
+            var geometry = new THREE.CylinderGeometry(ringInnerRadius, ringOuterRadius, 0, 100, 100, true);
+            return createMesh(geometry, url);
+        }
+
+        // 对于带有星环的行星 将星环与行星本身添加为一个 Group 方便后续对位置的设置
+        function createRingPlanetMesh(planetRadius, planetUrl, ringInnerRadius, ringOuterRadius, ringUrl) {
+            var group = new THREE.Group();
+            var planet = createSphereMesh(planetRadius, planetUrl);
+            var ring = createRingMesh(ringInnerRadius, ringOuterRadius, ringUrl);
+            group.add(planet);
+            group.add(ring);
+            return group;
+        }
+
+        // 创建轨道
+        function createOrbit(radius) {
+            var arc = new THREE.ArcCurve(0, 0, radius, 0, 2 * Math.PI, true);
+            var points = arc.getPoints(50);
+            var geometry = new THREE.Geometry();
+            geometry.setFromPoints(points);
+            var material = new THREE.LineBasicMaterial({
+                color: 0x222222
+            });
+            var orbit = new THREE.LineLoop(geometry, material);
+            orbit.rotateX(Math.PI / 2);
+            return orbit;
+        }
+
+
+        function getData() {
+            /*
+                对象形式返回数据 {sun:{}, planet: [{}]}
+                其中行星对象有两种 分别为 无星环对象 和 带星环对象
+            */
+            // 基准长度
+            var basicLength = 5;
+            return {
+                sun: {
+                    name: 'sun',
+                    radius: 9 * basicLength,
+                    url: './images/sun.jpg',
+                },
+
+                planet: [{
+                    name: 'Mercury',
+                    radius: 2.5 * basicLength,
+                    url: './images/mercury.jpg',
+                    v: 0.03,
+                    orbitRadius: 10 * basicLength,
+                }, {
+                    name: 'Venus',
+                    v: 0.04,
+                    radius: 3 * basicLength,
+                    url: './images/venus.jpg',
+                    orbitRadius: 20 * basicLength,
+                }, {
+                    name: 'Earth',
+                    radius: 4 * basicLength,
+                    url: './images/earth.jpg',
+                    v: 0.07,
+                    orbitRadius: 25 * basicLength,
+                }, {
+                    name: 'Mars',
+                    radius: 4 * basicLength,
+                    url: './images/mars.jpg',
+                    v: 0.07,
+                    orbitRadius: 40 * basicLength,
+                },
+                {
+                    name: 'Jupiter',
+                    radius: 6 * basicLength,
+                    url: './images/jupiter.jpg',
+                    v: 0.07,
+                    orbitRadius: 60 * basicLength,
+                }, {
+                    name: 'Saturn',
+                    v: 0.04,
+                    sphere: {
+                        radius: 5.5 * basicLength,
+                        url: './images/saturn.jpg',
+                    },
+                    ring: {
+                        innerRadius: 6.5 * basicLength,
+                        outerRadius: 8.5 * basicLength,
+                        url: './images/jupiter.jpg',
+                    },
+                    orbitRadius: 72 * basicLength,
+                }, {
+                    name: 'Neptune',
+                    radius: 4 * basicLength,
+                    url: './images/neptune.jpg',
+                    v: 0.07,
+                    orbitRadius: 80 * basicLength,
+                }],
+            }
+        }
+    </script>
+</body>
+
+</html>

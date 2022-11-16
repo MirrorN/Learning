@@ -1,0 +1,141 @@
+<!-- 书籍管理页面： 书籍展示、添加、删除功能 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books management</title>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <script src="./lib/jquery.min.js"></script>
+</head>
+
+<body style="padding: 15px">
+
+    <!-- 添加图书 -->
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">添加新图书</h3>
+        </div>
+        <div class="panel-body form-inline">
+
+            <div class="input-group">
+                <div class="input-group-addon">书名</div>
+                <input type="text" class="form-control" id="iptBookName" placeholder="请输入书名">
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-addon">作者名</div>
+                <input type="text" class="form-control" id="iptAuthor" placeholder="请输入作者">
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-addon">出版社</div>
+                <input type="text" class="form-control" id="iptPublisher" placeholder="请输入出版社">
+            </div>
+
+            <button class="btn btn-primary" id="btnAddBook">添加</button>
+        </div>
+
+    </div>
+
+    <!-- 图书表格 -->
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>出版社</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="bookBody">
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function getBookList() {
+            $.get('http://www.liulongbin.top:3006/api/getbooks', (res) => {
+                if (res.status !== 200) {
+                    alert('获取图书数据失败！');
+                }
+                // console.log(res);
+                // console.log(res.data);
+                var rows = [];
+                // 循环拼接表格字符串
+                $.each(res.data, function (i, item) {
+                    // 在删除链接上定义索引 （data-开头为约定写法）
+                    rows.push("<tr><td>" + item.id + "</td><td>" + item.bookname
+                        + "</td><td>" + item.author + "</td><td>" + item.publisher
+                        + "</td><td><a href='#' class='del' data-id='"+item.id+"'>删除</a></td></tr>");
+                });
+
+                // 渲染表格结构
+                $('#bookBody').empty().append(rows.join(''));
+            });
+        }
+
+        function addBook(){
+            // 首先判断输入信息是否合法
+            var bookname = $('#iptBookName').val().trim();
+            var author = $('#iptAuthor').val().trim();
+            var publisher = $('#iptPublisher').val().trim();
+            if(bookname.length<=0 || author.length<=0 || publisher.length<=0){
+                return alert('输入不合法');
+            }
+
+            // post请求
+            var book = {bookname: bookname, author: author, publisher: publisher};
+            $.post('http://www.liulongbin.top:3006/api/addbook', book, function(res){
+                console.log(res);
+                if(res.status === 201){
+                    alert('添加成功');
+                    getBookList();
+                    // 添加成功之后 清空输入信息
+                    $('#iptBookName').val('');
+                    $('#iptAuthor').val('');
+                    $('#iptPublisher').val('');
+                }else{
+                    alert(res.msg);
+                }
+            })
+            
+        }
+
+        function delBook(index){
+            $.get('http://www.liulongbin.top:3006/api/delbook', {id: index}, function(res){
+                if(res.status === 200){
+                    alert('删除成功');
+                    getBookList();
+                }else{
+                    alert('删除失败');
+                }
+            })
+        }
+
+        $(function () {
+            getBookList();
+            
+            $('#btnAddBook').on('click', function(){
+                addBook();
+            });
+
+            // 由于页面中一开始不存在此元素 因此绑定点击事件失败
+            // $('.del').on('click', function(){
+            //     console.log('del');
+            // });
+            
+            // 使用事件委托方式绑定点击 父元素 -> 子元素
+            $('#bookBody').on('click', '.del', function(){
+                delBook($(this).attr('data-id'));  
+            });
+        });
+    </script>
+</body>
+
+</html>

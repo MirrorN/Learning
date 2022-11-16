@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operate Form Element by JS</title>
+    <style>
+        input{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <!-- <input id="btnChange" type="button" value="click"> -->
+        <button id="btnChange">Click</button>
+        <input id="showText" type="text", placeholder="som texts">
+    </form>
+    <input id="pwd" type="password", placeholder="input pwd">
+    <button id="btnShowPwd">click</button>
+    <script>
+        // 点击按钮 改变input表单内的文字内容 并且禁用该按钮
+        function func1(){
+            var btnChange = document.querySelector('#btnChange');
+            var showText = document.querySelector('#showText');
+            
+            btnChange.onclick = function(){
+                showText.value = 'change the showing text.';
+                // btnChange.disabled = true;
+                // this 代指的是调用者
+                // this.disabled = true;
+            }
+        }
+        // func1();
+
+        function func2(){
+            var pwd = document.querySelector('#pwd');
+            var btnShowPwd = document.querySelector('#btnShowPwd');
+            var flag = 0;
+            
+            btnShowPwd.onclick = function(){
+                if(flag==0){
+                    pwd.type = 'text';
+                    flag = 1;
+                }else{
+                    pwd.type = 'password';
+                    flag = 0;
+                }
+            }
+        }
+        func2();
+    </script>
+</body>
+</html>

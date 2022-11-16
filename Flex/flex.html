@@ -1,0 +1,75 @@
+<!-- 子元素 flex 属性 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex</title>
+  <style>
+    section {
+      display: flex;
+      justify-content: content;
+      align-items: center;
+      margin: 0 auto;
+      background-color: #f5a9a9;
+      height: 100px;
+      width: 60%;
+    }
+
+    section>div:nth-child(1) {
+      height: 90px;
+      width: 100px;
+      background-color: #90e8eb;
+    }
+
+    section>div:nth-child(2) {
+      /* 设置子元素占剩余空间的一份 */
+      flex: 1;
+      height: 90px;
+      background-color: #e7c1eb;
+    }
+
+    section>div:nth-child(3) {
+      height: 90px;
+      width: 100px;
+      background-color: #a8ebcf;
+    }
+
+    p {
+      display: flex;
+      justify-content: content;
+      align-items: center;
+      margin: 10px auto;
+      background-color: #f5a9a9;
+      height: 100px;
+      width: 60%;
+    }
+
+    p>span {
+      flex: 1;
+    }
+
+    p>span:nth-child(2) {
+      flex: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div>a</div>
+    <div>b</div>
+    <div>c</div>
+  </section>
+
+  <p>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+  </p>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date object demo</title>
+    <script>
+        // 对象实例化
+        function func1() {
+            var nowDate = new Date();
+            console.log(nowDate);
+
+            var date1 = new Date('2022-07-19 13:44:10');
+            console.log(date1);
+
+            var date2 = new Date(2022, 7, 19);
+            console.log(date2);
+
+            var date3 = new Date('2022/7/19');
+            console.log(date3);
+        }
+
+        // func1();
+
+        // 日期格式化
+        function func2() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;  // 月份计算从0开始 因此实际的日期是所得到的月份+1
+            var dates = date.getDate();
+            var day = date.getDay();
+
+            console.log(year + "年" + month + "月" + dates + "日");
+
+            // 注意在返回周几的时候 周日是0索引的日期 1代表周一 因此可以通过定义字符串数组映射为中文表述
+            var days = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+            console.log(days[day]);
+        }
+        // func2();
+
+        // 时刻格式化
+        function func3() {
+            var date = new Date();
+            var hour = date.getHours();
+            console.log(typeof (hour));
+            hour = hour > 10 ? hour : '0' + hour;
+            console.log(typeof (hour));
+            var minute = date.getMinutes();
+            minute = minute > 10 ? minute : '0' + minute;
+            var second = date.getSeconds();
+            second = second > 10 ? second : '0' + second;
+
+            console.log(hour + ":" + minute + ":" + second);
+        }
+        // func3();
+
+        function func4() {
+            var val1 = 123;
+            console.log(typeof (val1));
+            var val2 = '123';
+            console.log(typeof (val2));
+            var res = val1 + val2;
+            console.log(typeof (res));
+            var tmp1 = val1 > 100 ? val1 : '0' + val1;
+            console.log(typeof (tmp1));
+        }
+        // func4();
+
+        //毫秒数（时间戳）
+        function func5() {
+            var date = new Date();
+            console.log(date.getTime());
+            console.log(date.valueOf());
+            var date1 = +new Date();
+            console.log(date1);
+            console.log(Date.now());
+        }
+        // func5();
+
+        // 倒计时
+        function func6(year, month, day, hour, minute, second) {
+            var inputTime = +new Date(year, month - 1, day, hour, minute, second);
+
+            var nowTime = +new Date();
+
+            var totalSeconds = (inputTime - nowTime) / 1000;
+            var days = parseInt(totalSeconds / 60 / 60 / 24);
+            days = days > 10 ? days : '0' + days;
+            var hours = parseInt(totalSeconds / 60 / 60 % 24);
+            hours = hours > 10 ? hours : '0' + hours;
+            var minutes = parseInt(totalSeconds / 60 % 60);
+            minutes = minutes > 10 ? minutes : '0' + minutes;
+            var seconds = parseInt(totalSeconds % 60);
+            seconds = seconds > 10 ? seconds : '0' + seconds;
+
+            console.log("倒计时：" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒");
+        }
+        func6(2022, 7, 20, 0, 0, 0);
+
+        function func7() {
+            var tmp1 = 10;
+            var tmp2 = 10 / 3;
+            console.log(tmp2);
+            console.log(parseInt(tmp2));
+        }
+        // func7();
+    </script>
+</head>
+
+<body>
+    <h3>Test for Date object.</h3>
+</body>
+
+</html>

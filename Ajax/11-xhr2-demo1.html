@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest Level2</title>
+    <script src="./lib/jquery.min.js"></script>
+</head>
+
+<body>
+    <form action="#" id="form1">
+        <input type="text" name="uname">
+        <input type="text" name="gender">
+
+        <button type="submit">sub</button>
+    </form>
+    <script>
+
+        // 测试请求超时设置
+        function func1() {
+            var xhr = XMLHttpRequest();
+            // 设置请求超时的时间(毫秒)以及回调函数
+            xhr.timeout = 30;
+            xhr.ontimeout = function () {
+                console.log('Time out');
+            }
+            xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks');
+            xhr.send();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            }
+        }
+
+        // 测试FormData对象模拟表单操作
+        function func2() {
+            var fd = new FormData();
+            // fd对象添加表单项
+            fd.append('uname', 'zs');
+            fd.append('upwd', '1234');
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://www.liulongbin.top:3006/api/formdata');
+            xhr.send(fd);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+        }
+        // func2();
+
+        // 测试使用FormData获取表单数据
+        function func3() {
+            var form = $('#form1');
+            // var form = document.querySelector('#form1');
+            form.on('submit', function(e){
+            // form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var fd = new FormData(form[0]);
+                console.log(fd);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://www.liulongbin.top:3006/api/formdata');
+                xhr.send(fd);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log(JSON.parse(xhr.responseText));
+                    }
+                }
+            });
+        }
+        func3();
+    </script>
+</body>
+
+</html>

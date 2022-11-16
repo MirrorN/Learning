@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>operate element</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .test{
+            margin: 20px;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            background-color: #ccc;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>li 1</li>
+        <li>li 2</li>
+        <li>li 3</li>
+    </ul>
+    
+    <div>div 1</div>
+
+    <div class="test">
+        ss
+    </div>
+
+    <script>
+        $(function(){
+            // 内部元素的添加方式 （ul -li）
+            var li = $('<li>new one</li>');
+            $('ul').append(li);
+            $('ul').prepend(li);
+
+            // 外部元素的添加方式
+            var newDiv = $('<div>new div </div>');
+            $('div').after(newDiv);
+            $('div').before(newDiv);
+
+            // jq 尺寸
+            // 元素实际大小的尺寸
+            console.log($('.test').width());
+            console.log($('.test').height());
+            // 元素实际大小 + padding大小
+            console.log($('.test').innerWidth());
+            console.log($('.test').innerHeight());
+            // 元素实际大小 + padding + border
+            console.log($('.test').outerHeight());
+            console.log($('.test').outerWidth());
+            // 元素实际大小 + padding + border + margin
+            console.log($('.test').outerHeight(true));
+            console.log($('.test').outerWidth(true));
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Message Board</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        textarea {
+            outline: none;
+            height: 50px;
+        }
+
+        ul {
+            margin-top: 20px;
+        }
+
+        ul li {
+            background-color: #ccc;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <textarea></textarea>
+        <button>add</button>
+        <ul></ul>
+    </div>
+
+    <script>
+        var messageBox = document.querySelector('textarea');
+        var addBtn = document.querySelector('button');
+        var messageList = document.querySelector('ul');
+
+        addBtn.onclick = function () {
+            var message = messageBox.value;
+            if (message == '') {
+                alert('no content.');
+            } else {
+                var tmpLi = document.createElement('li');
+                tmpLi.innerHTML = message;
+                messageList.insertBefore(tmpLi, messageList.children[0]);
+                messageBox.value = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

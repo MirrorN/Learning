@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        table{
+            width: 500px;
+            text-align: center;
+            margin: 40px auto;
+            border-collapse: collapse;
+            border: 1px solid rgb(58, 58, 58);
+        }
+        
+        th,
+        td{
+            height: 40px;
+            border: 1px solid rgb(58, 58, 58);
+        }
+
+        tbody tr{
+            background-color: #f0f0f0;
+        }
+        
+        tbody tr:hover{
+            cursor: pointer;
+            background-color: rgb(234, 231, 231);
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="check-all"></th>
+                <th>商品</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Good1</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Good1</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Good1</td>
+                <td>100</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var checkAll = document.querySelector('.check-all');
+        var checkboxes = document.querySelector('tbody').querySelectorAll('input');
+        console.log(checkAll);
+        console.log(checkboxes.length);
+
+        checkAll.onclick = function(){
+            // checkAll.checked: 如果选中就是true 反之则是false
+            // 因此可以直接将下面所有的选择框的状态设置为 checked （同true 同false）
+            // console.log(checkAll.checked);
+            for(var i=0; i<checkboxes.length; i++){
+                checkboxes[i].checked = this.checked;
+            }
+        }
+
+        // 为每个选择框绑定onclick事件
+        for(var i=0; i<checkboxes.length; i++){
+            checkboxes[i].onclick = function(){
+                var flag = true;
+                // 每次都必须检查所有的选择框是否都被选择
+                // 使用一个标识变量
+                for(var j=0; j<checkboxes.length; j++){
+                    if(!checkboxes[j].checked){
+                        flag = false;
+                        break;
+                    }
+                }
+                // 根据选择的结果决定最终checkall的结果
+                checkAll.checked = flag;
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

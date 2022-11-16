@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch</title>
+    <script src="./lib/vue2.js"></script>
+    <script src="./lib/jquery.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.lazy="info.username">
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                info: {
+                    username: '',
+                }
+            },
+            watch:{
+                /* info: {
+                    handler(newVal){
+                        console.log(newVal)
+                    },
+                    // 深度监听 此时监听对象的任意一个属性变化都会触发该侦听器
+                    deep: true,
+                } */
+
+                // 如果要监听对象的子属性值的变化 必须要使用表达式的形式（包裹一层单引号）
+                // 'info.username'(newVal){
+                //     console.log(newVal)
+                // }
+            }
+        })
+    </script>
+</body>
+</html>

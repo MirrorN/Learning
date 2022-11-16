@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手风琴效果 Demo</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        .content{
+            margin: 50px auto;
+            height: 62px;
+            width: 400px;
+            border: 1px solid black;
+        }
+
+        .content div{
+            float: left;
+            margin-right: 5px;
+            height: 60px;
+            width: 60px;
+            background-color: #ccc;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="content">
+        <ul>
+            <li><div></div></li>
+            <li><div></div></li>
+            <li><div></div></li>
+            <li><div></div></li>
+        </ul>
+    </div>
+
+    <script>
+        $(function(){
+            $('.content div').hover(function(){
+                $(this).stop().animate({
+                    width: 100,
+                }, 500);
+            }, function(){
+                $(this).stop().animate({
+                    width: 60,
+                }, 500);
+            });
+        })
+    </script>
+</body>
+</html>

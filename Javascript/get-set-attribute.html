@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test1{
+            height: 100px;
+            width: 100px;
+            background-color: #ccc;
+        }
+
+        .test2{
+            height: 200px;
+            width: 200px;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="test1" id="test_id"></div>
+
+    <script>
+        var div = document.querySelector('div');
+        // 直接 element.properity 输出属性
+        console.log(div.className);
+        console.log(div.id);
+
+        // 使用 element.getAttribute()
+        console.log(div.getAttribute('class'));
+        console.log(div.getAttribute('id'));
+
+
+        // 使用 element.setAttribute(a, b)
+        div.setAttribute('class', 'test2');
+        div.setAttribute('id', 'test_id2');
+
+        // 使用 removeAttribute 移除属性
+        div.removeAttribute('id');
+        
+    </script>
+</body>
+</html>

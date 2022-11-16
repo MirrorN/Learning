@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Node</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main{
+            width: 190px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid black;
+        }
+
+        textarea{
+            width: 150px;
+            height: 100px;
+        }
+        
+        ul{
+            margin-top: 20px;
+        }
+
+        ul button{
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <textarea></textarea>
+        <br />
+        <button>Add</button>
+        <ul></ul>
+    </div>
+    <script>
+        var addBtn = document.querySelector('button');
+        var ulList = document.querySelector('ul');
+        var textarea = document.querySelector('textarea');
+        addBtn.onclick = function(){
+            var text = textarea.value;
+            if(text == ''){
+                alert('no content');
+            }else{
+                var tmpLi = document.createElement('li');
+                // 直接写入 innerHTML
+                tmpLi.innerHTML = text + '<button>DEL</button>';
+                ulList.insertBefore(tmpLi, ulList.children[0]);
+                textarea.value = '';
+
+                // 为所有 a 标签绑定删除事件
+                var links = document.querySelector('ul').querySelectorAll('button');
+                for(var i=0; i<links.length; i++){
+                    links[i].onclick = function(){
+                        // 直接从 ul 元素上删除
+                        ulList.removeChild(this.parentNode);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

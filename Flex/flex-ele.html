@@ -1,0 +1,149 @@
+<!-- 类元素周期表布局实现方式 （flex 布局练习） -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elements table</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 5% auto;
+      height: 50%;
+      width: 50%;
+      background-color: #f0e1e1;
+    }
+
+    .column {
+      height: 80%;
+      width: 14%;
+      /* background-color: #ccc; */
+    }
+
+    /* .column:nth-child(even) {
+      background-color: #f0a3a3;
+    } */
+
+    .column div {
+      height: 25%;
+      width: 100%;
+    }
+
+    .col1 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col1 div:nth-child(odd) {
+      background-color: #96f3e7;
+    }
+
+    .col1 div:nth-child(even) {
+      background-color: #f396ba;
+    }
+
+    .col2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .col2 div:nth-child(odd) {
+      background-color: #96f3e7;
+    }
+
+    .col2 div:nth-child(even) {
+      background-color: #f396ba;
+    }
+
+    .col3 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .col3 div:nth-child(odd) {
+      background-color: #96f3e7;
+    }
+
+    .col3 div:nth-child(even) {
+      background-color: #f396ba;
+    }
+
+    .col4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .col4 div:nth-child(odd) {
+      background-color: #96f3e7;
+    }
+
+    .col4 div:nth-child(even) {
+      background-color: #f396ba;
+    }
+
+    .col4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .col5 div:nth-child(odd) {
+      background-color: #96f3e7;
+    }
+
+    .col5 div:nth-child(even) {
+      background-color: #f396ba;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="column col1">
+      <div>11</div>
+      <div>12</div>
+      <div>13</div>
+      <div>14</div>
+    </div>
+    <div class="column col2">
+      <div>21</div>
+      <div>22</div>
+      <div>23</div>
+    </div>
+    <div class="column col3">
+      <div>31</div>
+      <div>32</div>
+    </div>
+    <div class="column col4">
+      <div>41</div>
+    </div>
+    <div class="column col5">
+      <div>51</div>
+      <div>52</div>
+      <div>53</div>
+      <div>54</div>
+    </div>
+  </div>
+</body>
+
+</html>

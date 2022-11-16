@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test for the main page</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        
+        html,
+        body{
+            height: 100%;
+            width: 100%;
+        }
+
+        .main{
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 50% 50%;
+            justify-items: center;
+            align-items: center;
+            background-color: #ddd;
+        }
+
+        .inside{
+            position: relative;
+            width: 96%;
+            height: 96%;
+            background-color: #fff;
+            border: 1px solid black;
+        }
+        
+        iframe{
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="inside">video1</div>
+        <div class="inside">video2</div>
+        <div class="inside">
+            <iframe src="./solar-demo1.html" frameborder="0"></iframe>
+        </div>
+        <div class="inside"></div>
+        <!-- <iframe src="./solar-demo1.html" frameborder="0"></iframe> -->
+    </div>
+    
+</body>
+</html>

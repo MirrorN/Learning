@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fade</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .test{
+            height: 200px;
+            width: 100px;
+            background-color: #ccc;
+        }
+        
+        .content{
+            margin: 50px auto;
+            height: 202px;
+            width: 302px;
+            border: 1px solid black;
+        }
+        
+        .content div{
+            float: left;
+            height: 100px;
+            width: 100px;
+        }
+
+        .content div:nth-child(odd){
+            background-color: lightgreen;
+        }
+
+        .content div:nth-child(even){
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <button>fadein</button>
+    <button>fadeout</button>
+    <button>fatetoggle</button>
+    <button>fadeTo</button>
+    <div class="test"></div>
+    <br>
+    <div class="content">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script>
+        $(function(){
+            // 淡入淡出效果以及透明度设置
+            $('button').eq(0).on('click', function(){
+                $('.test').fadeIn();
+            });
+            
+            $('button').eq(1).on('click', function(){
+                $('.test').fadeOut();
+            });
+
+            $('button').eq(2).on('click', function(){
+                $('.test').fadeToggle();
+            });
+            
+            $('button').eq(3).on('click', function(){
+                $('.test').fadeTo(1000,0.2);
+            });
+
+            // 透明修改应用
+            // $('.content>div').on('mouseover', function(){
+            //     $(this).siblings().stop().fadeTo(1000, 0.5);
+            // });
+            
+            // $('.content>div').on('mouseout', function(){
+            //     $(this).siblings().stop().fadeTo(1000, 1);
+            // });
+
+            // hover简化
+            $('.content>div').hover(function(){
+                $(this).siblings().stop().fadeTo(500, 0.5);
+            }, function(){
+                $(this).siblings().stop().fadeTo(500, 1);
+            })
+
+        })
+    </script>
+</body>
+</html>

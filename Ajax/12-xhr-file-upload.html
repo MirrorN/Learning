@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xhr file upload</title>
+    <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+    <!-- 文件上传 -->
+    <input type="file" id="file">
+    <button id="btnUpload">Upload</button>
+
+    <br>
+    <img src="" alt="" id="img" width="300">
+
+
+    <script>
+        $('#btnUpload').on('click', function(){
+            var files = $('#file')[0].files;
+            console.log(files);
+            if(files.length <= 0){
+                return alert('Choose at least one file.');
+            }  
+            console.log('select file.');
+            var fd = new FormData();
+            fd.append('avatar', files[0]);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://liulongbin.top:3006/api/upload/avatar');
+            xhr.send(fd);
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    
+                    var data = JSON.parse(xhr.responseText);
+                    console.log(data.url);
+                    if(data.status === 200){
+                        $('#img')[0].src = 'http://liulongbin.top:3006'+data.url;
+                    }else{
+                        console.log(data.message);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

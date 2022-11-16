@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efficiency comparison</title>
+    <style>
+        div{
+            height: 3px;
+            border: 1px solid black;
+            margin-right: 10px;
+        }
+        .inner,
+        .inner-arr,
+        .create{
+            float: left;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="inner"></div>
+    <div class="inner-arr"></div>
+    <div class="create"></div>
+
+    <script>
+        var divInner = document.querySelector('.inner');
+        var divInnerArr = document.querySelector('.inner-arr');
+        var divCreate = document.querySelector('.create');
+
+        // 1. 使用 innerHTML 拼接
+        var d1 = +new Date();
+        // for(var i=0; i<1000; i++){
+        //     divInner.innerHTML += '<div></div>';
+        // }
+        // console.log(+new Date() - d1);
+        // 2. 使用 innerHTML 数组拼接
+        // var tmpArr = []
+        // for(var i=0; i<1000; i++){
+        //     tmpArr.push('<div></div>');
+        // }
+        // divInnerArr.innerHTML += tmpArr.join('');
+        // console.log(+new Date() - d1);
+        // 3. 使用 createElement 创建
+        for(var i=0; i<5000; i++){
+            var tmpDiv = document.createElement('div');
+            divCreate.appendChild(tmpDiv);
+        }
+        console.log(+new Date() - d1);
+    </script>
+</body>
+</html>

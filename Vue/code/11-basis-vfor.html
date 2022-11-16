@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <v-for></v-for>
+    </title>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+    <script src="./lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <table class="table table-bordered table-hover  ">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+            </tr>
+            <tr v-for="(item, index) in user" :key="item.id">
+                <td>{{ index }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.age }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                user: [
+                    { id: 1, name: 'zs', age: 13 },
+                    { id: 2, name: 'ls', age: 16 },
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

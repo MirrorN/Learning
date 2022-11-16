@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box model</title>
+  <style>
+    * {
+      /* margin padding 均是基于父元素的 width */
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 使用 box model 实现盒子垂直居中（绝对定位） */
+
+    /* .div1 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 40%;
+      width: 40%;
+      border: 1px solid black;
+      transform: translate(-50%, -50%);
+    }
+
+    .div2 {
+      margin: calc(150px) auto;
+      height: 100px;
+      width: 100px;
+      background-color: lightgreen;
+    } */
+
+    /* flex 布局 */
+
+    /* 
+    采用 flex 布局的元素被称为 Flex 容器（flex container）容器默认存在两根轴：水平 main-axis 和垂直轴 cross axis
+    align-items: 
+    justify-content: 
+    */
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      display: flex;
+      /* 用于设置主轴方向 justify-content 的设置随之而变化 */
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .div1 {
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      height: 300px;
+      width: 300px;
+      border: 1px solid black;
+    }
+
+    .div2 {
+      height: 100px;
+      width: 100px;
+      background-color: lightgreen;
+    }
+
+    .div3 {
+      flex: 1;
+      background-color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div1">
+    <div class="div2"></div>
+    <div class="div3"></div>
+  </div>
+</body>
+
+</html>

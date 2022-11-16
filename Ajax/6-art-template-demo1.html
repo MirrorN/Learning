@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art-template test</title>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/template-web.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <!-- 定义模板 使用html页面格式 -->
+    <script type="text/html" id="tpl-user">
+        <h3>{{title}}</h3>
+        <p>{{paragraph}}</p>
+        <div>
+            {{@ content}}
+        </div>
+
+        <div>
+            {{if flag === 1}}
+            {{jug1}}
+            {{else if flag === 0}}
+            {{jug2}}
+            {{/if}}
+        </div>
+
+        <div>
+            <ul>
+                {{each listItems}}
+                <li>{{$index}} --- {{$value}}</li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <!-- 时间格式过滤器 -->
+        <div>
+            Date now: {{regTime | dateFormat}}
+        </div>
+    </script>
+
+
+    <script>
+        // 时间格式化过滤器定义
+        template.defaults.imports.dateFormat = function (date) {
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+            // 返回结果
+            return y + '-' + m + '-' + d;
+        }
+        // 定义渲染数据
+        var data = {
+            title: 'test title',
+            paragraph: 'this is a test paragraph.',
+            content: '<h3>test title</h3>',
+            flag: 0,
+            jug1: 'flag 1',
+            jug2: 'flag 2',
+            listItems: ['identity', 'free loop', 'listen'],
+            regTime: new Date(),
+        };
+
+        // template
+        var htmlStr = template('tpl-user', data);
+
+        // 填充渲染页面
+        $('#container').html(htmlStr);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operate Table</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            width: 300px;
+            margin: 50px auto;
+            border-collapse: collapse;
+            /* border: 1px solid black; */
+        }
+
+        td,
+        th {
+            width: 75px;
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Person</th>
+            <th>Age</th>
+            <th>Grade</th>
+            <th>Op</th>
+        </tr>
+    </table>
+
+    <script>
+        var infos = [{ name: 'zhangsan', age: 12, grade: 60 },
+        { name: 'zhangsan', age: 12, grade: 60 },
+        { name: 'zhangsan', age: 12, grade: 60 },
+        { name: 'zhangsan', age: 12, grade: 60 },];
+
+        var table = document.querySelector('table');
+        for(var i=0; i<infos.length; i++){
+            var tmpTr = document.createElement('tr');
+            for(var j in infos[i]){
+                var tmpTd = document.createElement('td');
+                tmpTd.innerHTML = infos[i][j];
+                tmpTr.appendChild(tmpTd);
+            }
+            var tmpTd = document.createElement('td');
+            tmpTd.innerHTML = '<button>DEL</button>';
+            tmpTr.appendChild(tmpTd);
+            table.appendChild(tmpTr);
+        }
+
+        var btns = document.querySelectorAll('button');
+        for(var i=0; i<btns.length; i++){
+            btns[i].onclick = function(){
+                table.removeChild(this.parentNode.parentNode);
+            }
+        }
+    </script>
+</body>
+
+</html>

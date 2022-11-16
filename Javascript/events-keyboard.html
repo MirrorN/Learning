@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .search {
+            position: relative;
+            margin: 100px auto;
+            height: 100px;
+            width: 200px;
+            /* border: 1px solid black; */
+        }
+
+        .con {
+            display: none;
+            position: absolute;
+            top: -45px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <div class="con"></div>
+        <input type="text">
+    </div>
+    <script>
+        var inpt = document.querySelector('input');
+        var con = document.querySelector('.con');
+        inpt.addEventListener('keyup', function () {
+            var tmpText = this.value;
+            if (tmpText != '') {
+                con.style.display = 'block';
+            } else {
+                con.style.display = 'none';
+            }
+            con.innerHTML = tmpText;
+        })
+        inpt.addEventListener('blur', function (){
+            con.style.display = 'none';
+        })
+        inpt.addEventListener('focus', function () {
+            if (inpt.value !== '') {
+                con.style.display = 'block';
+            }
+        })
+    </script>
+</body>
+
+</html>

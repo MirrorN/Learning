@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test for JS object</title>
+    <script>
+// 字面量方式创建对象
+        function fun1(){
+            var obj = {
+                name: "dog1",
+                type: "dog_type1",
+                color: "white",
+                bark: function(){
+                    console.log("wang wang wnag.");
+                },
+                sleep: function(){
+                    console.log("sleping... zzz");
+                }
+            }
+
+            console.log(obj.name);
+            console.log(obj['color']);
+            obj.bark();
+            obj.sleep();
+        }
+        
+        // fun1();
+
+// new Object方式创建对象 
+        function func2(){
+            var obj = new Object();
+            obj.name = "zhangsan";
+            obj.age = 14;
+            obj.sayHi = function(){
+                console.log("Say Hi.");
+            }
+
+            console.log(obj.name);
+            console.log(obj['age']);
+            obj.sayHi();
+        }
+        // func2();
+// 构造函数方式
+    function func3(){
+        function Person(name, age, gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            
+            this.sayHi = function(name){
+                console.log("Hi " + name);
+            }
+        }
+        var p1 = new Person("zhangsan", 15, "man");
+        console.log(typeof(p1));
+        for (key in p1) {
+            console.log(key);
+            console.log(p1[key]);
+        }
+        p1.sayHi("Nexus");
+    }
+    func3();
+    </script>
+</head>
+<body>
+    <h3>Test for JS object.</h3>
+</body>
+</html>

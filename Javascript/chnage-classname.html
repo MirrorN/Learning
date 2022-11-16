@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change the Classname by js</title>
+    <style>
+        .first{
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            background-color: lightblue;
+        }
+        
+        .change{
+            width: 200px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="first">
+        text
+    </div>
+    <script>
+        var div = document.querySelector('div');
+        div.onclick = function(){
+            // 适合修改的样式较少的情况
+            // this.style.width = '200px';
+            // this.style.fontSize = '20px';
+            // this.style.fontWeight = 'bold';
+            // this.style.backgroundColor = 'lightgreen';
+
+            // 要修改的样式较多 直接写成类的形式
+            // this.className = 'change';
+            
+            // 上述修改方法会覆盖掉原始的类名
+            // this.className = 'first change';
+            var originClass = this.className;
+            // 注意空格
+            this.className = originClass + ' change';
+        }
+        console.log(div.className);
+    </script>
+</body>
+</html>

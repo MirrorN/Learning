@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind可以为属性动态绑定值 使用形式为 v-bind:attr -->
+        <input type="text" v-bind:placeholder="tips">
+
+        <!-- 简写形式 简写为: -->
+        <img :src="logo" alt="">
+
+        <div :title="'list-' + id">div</div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data:{
+                username: 'zhangsan',
+                tips: 'place input some text',
+                logo: 'https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg',
+                id: 2
+            }
+        })
+    </script>
+</body>
+
+</html>

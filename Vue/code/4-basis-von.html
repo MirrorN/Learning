@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on</title>
+    <script src="./lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{count}}</div>
+        <button @click="add(4)">add</button>
+        <button v-on:click="sub">sub</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                count: 2,
+            },
+            methods:{
+                add(n){
+                    this.count += n
+                },
+                sub(){
+                    this.count -= 1
+                }
+            }
+        })
+    </script>
+
+<!--     <div id="app">
+        <div>{{count}}</div>
+        <button v-on:click="add">add</button>
+        <button v-on:click="sub">sub</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                count: 2,
+            },
+            methods: {
+                add: function () {
+                    // 判断类型、内存地址是否完全一样
+                    console.log(vm === this)
+                    this.count += 1
+                },
+                sub(){
+                    // vm 与 this 等价
+                    vm.count -= 1
+                }
+            }
+        })
+    </script> -->
+</body>
+
+</html>
